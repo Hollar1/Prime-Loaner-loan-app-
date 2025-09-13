@@ -11,3 +11,13 @@ function Button({ children, onClick, type }) {
 }
 
 export default Button;
+
+export const Cancel_button = ({ children, type, onClick }) => {
+  return (
+    <div className={styles.wrapper_B}>
+      <button type={type} onClick={onClick}>
+        {children}
+      </button>
+    </div>
+  );
+};

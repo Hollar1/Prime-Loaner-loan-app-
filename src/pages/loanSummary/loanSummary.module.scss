@@ -1,0 +1,48 @@
+@import "../../../public/styles_prop.scss";
+
+.parent_wrapper {
+  .wrapper {
+    @include wrapper;
+    padding: 0px 10px;
+    header {
+      margin-top: 90px;
+      h3 {
+        @include _header;
+      }
+      p {
+        @include _text;
+        color: map-get($colors, color_09);
+        margin-top: map-get($marginTop, large);
+      }
+    }
+    .sec_01 {
+      margin-top: map-get($marginTop, xx_large);
+      width: 100%;
+      background-color: map-get($colors, color_05);
+      padding: 25px;
+      border-radius: 7px;
+      border: solid 0.2px map-get($colors, color_07);
+      div {
+        display: flex;
+        justify-content: space-between;
+        margin-top: map-get($marginTop, large);
+
+        p {
+          font-family: inter;
+          font-weight: map-get($fontWidth, x_large);
+          color: map-get($colors, color_09);
+        }
+        strong {
+          font-family: roboto;
+          font-size: map-get($fontSize, x_large);
+        }
+      }
+    } //  .sec_01 ends here
+    .sec_02 {
+      margin-top: map-get($marginTop, x_large);
+    }
+    .sec_03 {
+      margin-top: map-get($marginTop, medium);
+    }
+  } // Wrapper scope ends here
+} // Parent_wrapper scope ends here

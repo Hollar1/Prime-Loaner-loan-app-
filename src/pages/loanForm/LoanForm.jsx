@@ -4,7 +4,9 @@ import back_icon from "../../assets/icons/back_icon.png";
 import Button from "../../components/button/Button";
 import Input from "../../components/input/Input";
 import Whatsapp from "../../components/whatsapp/Whatsapp";
+import { useNavigate } from "react-router-dom";
 function LoanForm() {
+  const navigate = useNavigate();
   return (
     <div className={styles.parent_wrapper}>
       <Whatsapp />
@@ -50,21 +52,21 @@ function LoanForm() {
           <section className={styles.select_sec}>
             <label>
               Town/Village
-              <select></select>
+              <input type="text" />
             </label>
             <label>
               State
-              <select></select>
+              <input type="text" />
             </label>
           </section>
           <section className={styles.select_sec}>
             <label>
               LGA
-              <select></select>
+              <input type="text" />
             </label>
             <label>
               Country
-              <select></select>
+              <input type="text" />
             </label>
           </section>
           <section className={styles.textarea}>
@@ -89,7 +91,13 @@ function LoanForm() {
           </section>
 
           <section className={styles.sec_03}>
-            <Button type={"submit"} children={"Proceed"} />
+            <Button
+              type={"submit"}
+              children={"Proceed"}
+              onClick={() => {
+                navigate("/loan-summary");
+              }}
+            />
           </section>
         </form>
       </div>
