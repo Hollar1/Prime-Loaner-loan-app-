@@ -110,10 +110,12 @@
           margin-top: map-get($marginTop, large);
           box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
           border-radius: 10px;
+          position: relative;
           img {
             width: 100%;
-            height: 170px;
+            height: 200px;
             border-radius: 10px 10px 0px 0px;
+            background-color: map-get($colors,color_08 );
           }
 
           div {
@@ -127,6 +129,36 @@
               margin-top: map-get($marginTop, medium);
               color: map-get($colors, color_03);
               margin-bottom: map-get($marginTop, medium);
+              font-size: map-get($fontSize, medium);
+            }
+          }
+          aside {
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+            button {
+              height: 30px;
+              width: 30px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border: none;
+              border-radius: 50%;
+              font-size: map-get($fontSize, x_large);
+              background-color: map-get($colors, color_01);
+              &:active {
+                background-color: map-get($colors, color_02);
+              }
+              &:first-child {
+                position: absolute;
+                top: 48%;
+                left: 2%;
+              }
+              &:last-child {
+                position: absolute;
+                top: 48%;
+                right: 2%;
+              }
             }
           }
         }
@@ -269,6 +301,9 @@
 
       .sec_08 {
         margin-top: map-get($marginTop, xx_large);
+        background-color: map-get($colors, color_08);
+        padding: 20px 10px;
+        border-radius: 8px;
         h3 {
           @include _header;
           text-align: center;
@@ -277,9 +312,6 @@
           @include _text;
           color: map-get($colors, color_03);
           margin-top: map-get($marginTop, medium);
-          strong {
-            font-weight: map-get($fontWidth, large);
-          }
         }
       } // .sec_08 ends here
 
@@ -303,15 +335,19 @@
             color: black;
             text-decoration: none;
             font-family: inter;
-            font-size: map-get($fontSize, large);
+            font-size: map-get($fontSize, x_large);
             display: flex;
             color: map-get($colors, color_03);
           }
         }
       } // .sec_09 ends here
+    } // Main scope ends here
 
+    nav {
+      border-top: solid rgb(218, 217, 217) 0.2px;
+      margin-top: map-get($marginTop, xxx_large);
       .sec_10 {
-        margin-top: map-get($marginTop, xxx_large);
+        margin-top: map-get($marginTop, xx_large);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -322,7 +358,7 @@
           background-color: transparent;
           outline: none;
           color: map-get($colors, color_03);
-          font-size: map-get($fontSize, medium);
+          font-size: map-get($fontSize, large);
           &:active {
             color: map-get($colors, color_01);
           }
@@ -330,7 +366,7 @@
       } // .sec_10 ends here
 
       .sec_11 {
-        margin-top: map-get($marginTop, large);
+        margin-top: map-get($marginTop, x_large);
         display: flex;
         width: 70%;
         margin-left: auto;
