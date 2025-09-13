@@ -31,6 +31,7 @@ import car_01 from "../../assets/images/cars/car_01.png";
 import car_02 from "../../assets/images/cars/car_02.png";
 import car_03 from "../../assets/images/cars/car_03.png";
 import car_04 from "../../assets/images/cars/car_04.png";
+import { useNavigate } from "react-router-dom";
 
 const business_photos = [business_01, business_02, business_03, business_04];
 
@@ -41,6 +42,8 @@ const rickshaw_photos = [rickshaw_01, rickshaw_02, rickshaw_03, rickshaw_04];
 const bike_photos = [bike_01, bike_02, bike_03, bike_04];
 
 function Home() {
+  const navigate = useNavigate();
+
   const [showAnswer, setShowAnswer] = useState("");
 
   const [changeBackground, setChangeBackground] = useState(false);
@@ -104,7 +107,7 @@ function Home() {
               Get the financial support you need to grow your business. Quick
               approvals, flexible terms, and personalized service.
             </h3>
-            <button>Get Quote</button>
+            <button onClick={() => navigate("/get-quote")}>Get Quote</button>
           </div>
         </section>
 

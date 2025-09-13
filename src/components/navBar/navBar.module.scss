@@ -56,5 +56,26 @@
       right: 4%;
       font-size: map-get($fontSize, xxxx_large);
     } // Bars div scope ends here
+
+    button {
+      position: absolute;
+      left: 4%;
+      border-radius: 50%;
+      height: 30px;
+      width: 30px;
+      border: none;
+      font-size: 20px;
+      &:active {
+        background-color: map-get($colors, color_07);
+      }
+      img {
+        width: 17px;
+      }
+    }
+
+
+
+
+    
   } // Nav scope ends here
 } // Wrapper closing tag
