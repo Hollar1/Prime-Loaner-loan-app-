@@ -7,7 +7,9 @@ $colors: (
   color_06: #ffffff,
   color_07: #e6e2db,
   color_08: #fbf9f5,
-  color_09:rgb(101, 99, 99)
+  color_09: rgb(107, 105, 105),
+  color_10: rgb(228, 240, 244),
+  color_11: rgb(243, 248, 251),
 );
 
 $fontSize: (
@@ -44,6 +46,7 @@ $lineHeight: (
 $marginTop: (
   small: 5px,
   medium: 10px,
+  x_medium: 15px,
   large: 20px,
   x_large: 25px,
   xx_large: 30px,

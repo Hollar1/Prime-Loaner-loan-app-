@@ -24,7 +24,7 @@
         background-color: map-get($colors, color_05);
         gap: 10px;
         position: relative;
-        margin-bottom: map-get($marginTop, medium);
+        margin-bottom: map-get($marginTop,x_medium);
         img {
           width: 55px;
           border-radius: 50%;

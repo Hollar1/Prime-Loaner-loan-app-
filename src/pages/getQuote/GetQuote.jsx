@@ -4,19 +4,16 @@ import bike_01 from "../../assets/images/bikes/bike_01.png";
 import rickshaw_01 from "../../assets/images/rickshaw/rickshaw_01.png";
 import business_01 from "../../assets/images/business/business_01.png";
 import car_01 from "../../assets/images/cars/car_01.png";
-import { FaRegCircle, FaRegCircleCheck } from "react-icons/fa6";
-import { HiArrowUturnLeft } from "react-icons/hi2";
+import { FaRegCircle,} from "react-icons/fa6";
 import back_icon from "../../assets/icons/back_icon.png";
 import Button from "../../components/button/Button";
+import { useNavigate } from "react-router-dom";
 
 function GetQuote() {
+  const navigate = useNavigate();
   return (
     <div className={styles.parent_wrapper}>
-      <NavBar
-        logo={""}
-        pageHeader={"Select Loan Type"}
-        goBack={back_icon}
-      />
+      <NavBar logo={""} pageHeader={"Select Loan Type"} goBack={back_icon} />
       <div className={styles.wrapper}>
         <header>
           <h3>Choose Your Loan</h3>
@@ -31,7 +28,7 @@ function GetQuote() {
               <p>Price: ₦1,300,000</p>
             </div>
             {/* <FaRegCircleCheck className={styles.input} /> */}
-            <FaRegCircle className={styles.input}/>
+            <FaRegCircle className={styles.input} />
           </article>
 
           <article>
@@ -69,7 +66,7 @@ function GetQuote() {
         </section>
 
         <section className={styles.sec_02}>
-          <h3>Estimate Your Loan</h3>
+          <h3>Loan Estimation</h3>
           <article>
             <div>
               <p>Loan Amount</p>
@@ -96,7 +93,7 @@ function GetQuote() {
         </section>
 
         <section className={styles.sec_03}>
-          <Button children={"Next"} />
+          <Button children={"Next"} onClick={() => navigate("/loan-form")} />
         </section>
       </div>
     </div>

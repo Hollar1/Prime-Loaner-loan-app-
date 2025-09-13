@@ -1,0 +1,19 @@
+@import "../../../public/styles_prop.scss";
+
+.wrapper {
+  margin-top: map-get($marginTop, small);
+  label {
+    display: flex;
+    flex-direction: column;
+    font-family: inter;
+    font-weight: map-get($fontWidth, medium);
+    font-size: map-get($fontSize, medium);
+    margin-top: map-get($marginTop, medium);
+    input {
+      height: 40px;
+      border-radius: 7px;
+      border: solid 0.2px map-get($colors, color_09);
+      background-color: map-get($colors, color_11);
+    }
+  }
+}

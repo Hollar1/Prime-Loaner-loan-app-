@@ -17,9 +17,11 @@ function NavBar({ logo, companyName, pageHeader, bars, goBack }) {
           </div>
         )}
 
-        <button onClick={handleGoBack}>
-          <img src={goBack} alt="" />
-        </button>
+        {goBack && (
+          <button onClick={handleGoBack}>
+            <img src={goBack} alt="" />
+          </button>
+        )}
 
         <div className={styles.companyName}>{companyName}</div>
         <div className={styles.pageHeader}>{pageHeader}</div>

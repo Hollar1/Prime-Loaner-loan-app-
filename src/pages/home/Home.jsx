@@ -10,6 +10,7 @@ import { TbCurrencyNaira } from "react-icons/tb";
 import { LiaHandsHelpingSolid } from "react-icons/lia";
 import { IoIosArrowDown, IoMdClose } from "react-icons/io";
 import { GrNext, GrPrevious } from "react-icons/gr";
+import Whatsapp from "../../components/whatsapp/Whatsapp";
 import { FaFacebook, FaYoutube, FaSquareInstagram } from "react-icons/fa6";
 
 import bike_01 from "../../assets/images/bikes/bike_01.png";
@@ -95,6 +96,7 @@ function Home() {
 
   return (
     <div className={styles.parent_wrapper}>
+      <Whatsapp />
       <NavBar companyName={"Prime Loaner"} bars={<HiOutlineBars4 />} />
       <div className={styles.wrapper}>
         <section
