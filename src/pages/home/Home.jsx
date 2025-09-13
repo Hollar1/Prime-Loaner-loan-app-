@@ -12,6 +12,7 @@ import { IoIosArrowDown, IoMdClose } from "react-icons/io";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import Whatsapp from "../../components/whatsapp/Whatsapp";
 import { FaFacebook, FaYoutube, FaSquareInstagram } from "react-icons/fa6";
+import { IoMdCloseCircle } from "react-icons/io";
 
 import bike_01 from "../../assets/images/bikes/bike_01.png";
 import bike_02 from "../../assets/images/bikes/bike_02.png";
@@ -33,6 +34,7 @@ import car_02 from "../../assets/images/cars/car_02.png";
 import car_03 from "../../assets/images/cars/car_03.png";
 import car_04 from "../../assets/images/cars/car_04.png";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../components/modal/Modal";
 
 const business_photos = [business_01, business_02, business_03, business_04];
 
@@ -94,10 +96,17 @@ function Home() {
     });
   };
 
+  const [successModal, setSuccessModal] = useState(false);
+
   return (
     <div className={styles.parent_wrapper}>
       <Whatsapp />
-      <NavBar companyName={"Prime Loaner"} bars={<HiOutlineBars4 />} />
+      {successModal && <Modal />}
+      <NavBar
+        companyName={"Prime Loaner"}
+        bars={ <HiOutlineBars4 />}
+        closeBars={<IoMdCloseCircle color="brown" size={25} />}
+      />
       <div className={styles.wrapper}>
         <section
           className={changeBackground ? styles.sec_01_A : styles.sec_01_B}

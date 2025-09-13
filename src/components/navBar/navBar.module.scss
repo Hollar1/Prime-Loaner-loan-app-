@@ -72,10 +72,23 @@
         width: 17px;
       }
     }
-
-
-
-
-    
   } // Nav scope ends here
+
+  .sec_01 {
+    position: fixed;
+    flex-direction: column;
+    border: solid 1.5px gray;
+    top: 55px;
+    right: 1%;
+    width: 50%;
+    z-index: 450;
+    button {
+      width: 100%;
+      padding: 6px;
+      border: none;
+      border-radius: none;
+      font-size: map-get($fontSize, xx_large);
+      border-bottom: 0.3px solid gray;
+    }
+  } // sec_01 scope ends here
 } // Wrapper closing tag
