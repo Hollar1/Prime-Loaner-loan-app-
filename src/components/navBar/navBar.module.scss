@@ -1,0 +1,59 @@
+@import "../../../public/styles_prop.scss";
+.wrapper {
+  nav {
+    display: flex;
+    height: 55px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2), 0px 0px 3px rgba(0, 0, 0, 0.2);
+    align-items: center;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    background-color: rgb(251, 249, 249);
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .logo {
+      position: absolute;
+      left: 4%;
+      img {
+        width: 90px;
+      }
+    } // logo div scope ends here
+
+    .companyName {
+      position: absolute;
+      left: 4%;
+      background-image: url("../../assets/images/GIF_01.gif");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      font-family: inter;
+      font-weight: map-get($fontWidth, xxxx_large);
+      font-size: map-get($fontSize, xxxx_large);
+      font-style: italic;
+    } // Company div scope ends here
+
+    .pageHeader {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      translate: -50% -50%;
+      font-family: poppins;
+      font-weight: map-get($fontWidth, x_large);
+      font-size: map-get($fontSize, xx_large);
+    } // Page header div scop ends here
+
+    .bars {
+      position: absolute;
+      right: 4%;
+      font-size: map-get($fontSize, xxxx_large);
+    } // Bars div scope ends here
+  } // Nav scope ends here
+} // Wrapper closing tag

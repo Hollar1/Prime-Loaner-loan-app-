@@ -1,0 +1,88 @@
+$colors: (
+  color_01: #f2a20d,
+  color_02: #b37604,
+  color_03: #454443,
+  color_04: #8a7c60,
+  color_05: #f5f3f0,
+  color_06: #ffffff,
+  color_07: #e6e2db,
+);
+
+$fontSize: (
+  x_small: 12px,
+  small: 13px,
+  medium: 14px,
+  large: 15px,
+  x_large: 16px,
+  xx_large: 18px,
+  xxx_large: 20px,
+  xxxx_large: 22px,
+  xxxxx_large: 24px,
+  xxxxxx_large: 26px,
+);
+
+$fontWidth: (
+  x_small: 400,
+  small: 450,
+  medium: 500,
+  large: 550,
+  x_large: 600,
+  xx_large: 650,
+  xxx_large: 700,
+  xxxx_large: 750,
+  xxxxx_large: 800,
+);
+
+$lineHeight: (
+  small: 22px,
+  medium: 23px,
+  large: 24px,
+);
+
+$marginTop: (
+  small: 5px,
+  medium: 10px,
+  large: 20px,
+  x_large: 25px,
+  xx_large: 30px,
+  xxx_large: 80px,
+);
+
+@mixin _header {
+  font-weight: map-get($fontWidth, xxx-large);
+  font-size: map-get($fontSize, xxxx_large);
+  font-family: roboto;
+}
+
+@mixin _text {
+  font-size: map-get($fontSize, x_large);
+  font-family: inter;
+  font-weight: map-get($fontWidth, small);
+  line-height: map-get($lineHeight, medium);
+}
+
+@mixin _subHeader {
+  font-weight: map-get($fontWidth, xx_large);
+  font-size: map-get($fontSize, xx_large);
+  font-family: roboto;
+}
+
+@mixin wrapper {
+  margin-top: 55px;
+}
+
+@mixin screen_for($device) {
+  @if $device == mobile {
+    @media (max-width: 425px) {
+      @content;
+    }
+  } @else if $device == tablet {
+    @media (min-width: 426px) and (max-width: 768px) {
+      @content;
+    }
+  } @else if $device == desktop {
+    @media (min-width: 769px) {
+      @content;
+    }
+  }
+}
