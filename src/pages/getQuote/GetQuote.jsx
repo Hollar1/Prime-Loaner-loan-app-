@@ -31,7 +31,7 @@ function GetQuote() {
               <p>Price: ₦1,300,000</p>
             </div>
             {/* <FaRegCircleCheck className={styles.input} /> */}
-            <FaRegCircle className={styles.input} />
+            <FaRegCircle className={styles.input}/>
           </article>
 
           <article>

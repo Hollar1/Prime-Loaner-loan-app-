@@ -1,6 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import styles from "../navBar/navBar.module.scss";
 
 function NavBar({ logo, companyName, pageHeader, bars, goBack }) {
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    }
+  };
   return (
     <div className={styles.wrapper}>
       <nav>
@@ -10,7 +17,7 @@ function NavBar({ logo, companyName, pageHeader, bars, goBack }) {
           </div>
         )}
 
-        <button>
+        <button onClick={handleGoBack}>
           <img src={goBack} alt="" />
         </button>
 

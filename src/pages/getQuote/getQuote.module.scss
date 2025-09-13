@@ -17,11 +17,11 @@
       article {
         width: 100%;
         border: solid 0.1px map-get($colors, color_07);
-        padding: 10px;
+        padding: 5px 10px;
         border-radius: 8px;
         display: flex;
         align-items: center;
-        background-color: white;
+        background-color: map-get($colors, color_05);
         gap: 10px;
         position: relative;
         margin-bottom: map-get($marginTop, medium);
@@ -36,10 +36,10 @@
           gap: 3px;
           strong {
             @include _subHeader;
-            font-size: map-get($fontSize, small);
+            font-size: map-get($fontSize, medium);
           }
           p {
-            font-size: map-get($fontSize, x_small);
+            font-size: map-get($fontSize, small);
             font-family: inter;
             font-weight: map-get($fontWidth, small);
             color: map-get($colors, color_09);
@@ -49,6 +49,7 @@
         .input {
           position: absolute;
           right: 3%;
+          font-size: 20px;
         }
       }
     } // .sec_01 ends here
@@ -65,20 +66,20 @@
           display: flex;
           justify-content: space-between;
           p {
-            font-size: map-get($fontSize, medium);
+            font-size: map-get($fontSize, large);
             font-family: inter;
             color: map-get($colors, color_09);
             margin-bottom: map-get($marginTop, medium);
           }
           span {
-            font-size: map-get($fontSize, medium);
+            font-size: map-get($fontSize, large);
             font-family: inter;
             color: map-get($colors, color_03);
             margin-bottom: map-get($marginTop, medium);
           }
 
           strong {
-            font-size: map-get($fontSize, small);
+            font-size: map-get($fontSize, medium);
             font-family: inter;
             color: map-get($colors, color_03);
             margin-bottom: map-get($marginTop, medium);
