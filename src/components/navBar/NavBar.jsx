@@ -46,7 +46,8 @@ function NavBar({ logo, companyName, pageHeader, bars, goBack, closeBars }) {
           <button>About Us</button>
           <button>Contact Us</button>
           <button>Our Policy</button>
-          <button>Login</button>
+          <button onClick={() => navigate("/profile")}>Profile</button>
+          <button>Admin</button>
         </section>
       )}
     </div>

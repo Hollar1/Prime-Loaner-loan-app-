@@ -87,6 +87,11 @@ function LoanForm() {
                 Utility Bill
                 <input type="file" />
               </label>
+
+              <label>
+                photo
+                <input type="file" placeholder="Upload your full picture" />
+              </label>
             </section>
           </section>
 

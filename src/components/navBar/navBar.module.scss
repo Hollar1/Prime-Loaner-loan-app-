@@ -53,8 +53,8 @@
 
     .bars {
       position: absolute;
-      right: 4%;
-      font-size: map-get($fontSize, xxxx_large);
+      right: 5%;
+      font-size: map-get($fontSize, xxxxx_large);
     } // Bars div scope ends here
 
     button {
@@ -84,11 +84,13 @@
     z-index: 450;
     button {
       width: 100%;
-      padding: 6px;
+      padding: 10px 0px;
       border: none;
       border-radius: none;
-      font-size: map-get($fontSize, xx_large);
+      font-size: map-get($fontSize, x_large);
+      font-weight: map-get($fontWidth, x_large);
       border-bottom: 0.3px solid gray;
+      letter-spacing: 0.3px;
     }
   } // sec_01 scope ends here
 } // Wrapper closing tag
