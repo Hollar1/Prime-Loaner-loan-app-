@@ -1,0 +1,96 @@
+@import "../../../public/styles_prop.scss";
+
+.parent_wrapper {
+  .wrapper {
+    @include wrapper;
+    margin-top: 70px;
+    padding: 10px;
+    header {
+      margin-bottom: map-get($marginTop, medium);
+      h3 {
+        @include _header;
+        margin-bottom: map-get($marginTop, medium);
+      }
+      p {
+        @include _text;
+        color: map-get($colors, color_09);
+      }
+    } // header scope ends here
+
+    .article_01 {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+      section {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+        padding: 7px;
+        border-radius: 5px;
+
+        h3 {
+          @include _subHeader;
+        }
+        p {
+          @include _text;
+          color: map-get($colors, color_09);
+          margin-top: map-get($marginTop, small);
+        }
+      }
+    } // .article_01 scope ends here
+
+    .article_02 {
+      background-color: rgb(250, 247, 247);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+      padding: 0px 7px;
+      border-radius: 8px;
+      padding-bottom: 30px;
+      padding-top: map-get($marginTop, large);
+      h3 {
+        text-align: center;
+        @include _subHeader;
+        margin-bottom: map-get($marginTop, small);
+      }
+      p {
+        @include _text;
+        color: map-get($colors, color_09);
+      }
+      h5 {
+        @include _subHeader;
+        font-size: map-get($fontSize, x_large);
+        font-weight: map-get($fontWidth, large);
+        margin-top: map-get($marginTop, medium);
+      }
+
+      ul {
+        li {
+          list-style: none;
+          margin-top: map-get($marginTop, medium);
+          @include _text;
+          color: map-get($colors, color_09);
+        }
+        span {
+          font-family: roboto;
+          color: black;
+          margin-right: 5px;
+          font-weight: map-get($fontWidth, medium);
+        }
+      }
+    } // .article_02 scope ends here
+
+    button {
+      margin-top: map-get($marginTop, x_large);
+      background-color: #1a73e8;
+      height: 40px;
+      border-radius: 8px;
+      border: none;
+      color: white;
+      width: 100%;
+      font-size: map-get($fontSize, x_large);
+      font-weight: map-get($fontWidth, x_large);
+    }
+  } // Wrapper scope ends here
+} // Parent_wrapper scope ends here

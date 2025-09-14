@@ -70,7 +70,7 @@ function LoanForm() {
             </label>
           </section>
           <section className={styles.textarea}>
-            <textarea name="" id=""></textarea>
+            <textarea placeholder="Provide detailed directions to your house."></textarea>
           </section>
           <hr />
 
@@ -89,7 +89,7 @@ function LoanForm() {
               </label>
 
               <label>
-                photo
+                Full Picture
                 <input type="file" placeholder="Upload your full picture" />
               </label>
             </section>

@@ -13,6 +13,7 @@ import { GrNext, GrPrevious } from "react-icons/gr";
 import Whatsapp from "../../components/whatsapp/Whatsapp";
 import { FaFacebook, FaYoutube, FaSquareInstagram } from "react-icons/fa6";
 import { IoMdCloseCircle } from "react-icons/io";
+import { FaRegCircleUser } from "react-icons/fa6";
 
 import bike_01 from "../../assets/images/bikes/bike_01.png";
 import bike_02 from "../../assets/images/bikes/bike_02.png";
@@ -104,8 +105,9 @@ function Home() {
       {successModal && <Modal />}
       <NavBar
         companyName={"Prime Loaner"}
-        bars={ <HiOutlineBars4 />}
+        bars={<HiOutlineBars4 />}
         closeBars={<IoMdCloseCircle color="brown" size={25} />}
+        user={<FaRegCircleUser />}
       />
       <div className={styles.wrapper}>
         <section
@@ -120,6 +122,26 @@ function Home() {
             </h3>
             <button onClick={() => navigate("/get-quote")}>Get Quote</button>
           </div>
+        </section>
+
+        <section className={styles.sec_00}>
+          <h3>Welcome to Prime Loaner</h3>
+          <p>
+            {/* We are dedicated to empowering the backbone of our economy – the
+            small business owners, motorcycle riders, car drivers, and rickshaw
+            riders. Our mission is to provide flexible, easy-to-access,
+            installment-based loans without the traditional barriers of banking.
+            We believe in your hustle and are here to provide the financial fuel
+            you need to thrive. */}
+            we believe every hustle deserves a boost. That’s why we provide
+            flexible, easy-to-access loans specifically designed for:
+          </p>
+          <ul>
+            <li>Small business owners</li>
+            <li>Motorcycle riders (okada riders)</li>
+            <li>Car drivers (taxi, Uber, Bolt, etc.)</li>
+            <li> Rickshaw (keke) riders</li>
+          </ul>
         </section>
 
         <main>
@@ -395,7 +417,7 @@ function Home() {
             </p>
           </section>
 
-          <section className={styles.sec_09}>
+          <section className={styles.sec_09} id="contactUs">
             <h3>Contact Us</h3>
 
             <div>
@@ -419,8 +441,12 @@ function Home() {
 
         <nav>
           <section className={styles.sec_10}>
-            <button>Privacy Policy</button>
-            <button>Terms Of Services</button>
+            <button onClick={() => navigate("/privacy-policy")}>
+              Privacy Policy
+            </button>
+            <button onClick={() => navigate("/terms-conditions")}>
+              Terms Of Services
+            </button>
           </section>
 
           <section className={styles.sec_11}>

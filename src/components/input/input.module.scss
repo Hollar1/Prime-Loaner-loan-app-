@@ -14,6 +14,10 @@
       border-radius: 7px;
       border: solid 0.2px map-get($colors, color_09);
       background-color: map-get($colors, color_11);
+      padding-inline-start: 7px;
+      &:focus{
+        border: solid 0.5px map-get($colors,color_01 );
+      }
     }
   }
 }

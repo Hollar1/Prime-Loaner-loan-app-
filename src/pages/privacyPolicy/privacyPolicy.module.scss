@@ -1,0 +1,38 @@
+@import "../../../public/styles_prop.scss";
+.parent_wrapper {
+  padding: 10px;
+  .wrapper {
+    @include wrapper;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 20px;
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      h3 {
+        @include _subHeader;
+      }
+      p {
+        @include _text;
+        color: map-get($colors, color_09);
+        a {
+          color: blue;
+          text-decoration-line: none;
+        }
+      }
+    }
+  } // Wrapper scope end here
+  span {
+    @include _text;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    color: map-get($colors, color_09);
+    margin-bottom: 20px;
+    font-size: map-get($fontSize, medium);
+  }
+} // Parent_wrapper scope ends here

@@ -50,7 +50,12 @@
       font-weight: map-get($fontWidth, x_large);
       font-size: map-get($fontSize, xx_large);
     } // Page header div scop ends here
-
+    .user {
+      position: absolute;
+      right: 22%;
+      font-size: map-get($fontSize, xxxxx_large);
+      color: rgb(2, 2, 208);
+    }
     .bars {
       position: absolute;
       right: 5%;

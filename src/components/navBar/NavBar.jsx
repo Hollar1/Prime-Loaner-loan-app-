@@ -4,7 +4,15 @@ import { useState } from "react";
 import { HiOutlineBars4 } from "react-icons/hi2";
 import { IoMdCloseCircle } from "react-icons/io";
 
-function NavBar({ logo, companyName, pageHeader, bars, goBack, closeBars }) {
+function NavBar({
+  logo,
+  companyName,
+  pageHeader,
+  bars,
+  goBack,
+  closeBars,
+  user,
+}) {
   const navigate = useNavigate();
   const handleGoBack = () => {
     if (window.history.length > 1) {
@@ -35,6 +43,10 @@ function NavBar({ logo, companyName, pageHeader, bars, goBack, closeBars }) {
         <div className={styles.companyName}>{companyName}</div>
         <div className={styles.pageHeader}>{pageHeader}</div>
 
+        <div className={styles.user} onClick={() => navigate("/profile")}>
+          {user}
+        </div>
+
         <div className={styles.bars} onClick={handleShowMenu}>
           {showMenu ? closeBars : bars}
         </div>
@@ -42,12 +54,17 @@ function NavBar({ logo, companyName, pageHeader, bars, goBack, closeBars }) {
 
       {showMenu && (
         <section className={styles.sec_01}>
-          <button>Apply Loan</button>
-          <button>About Us</button>
-          <button>Contact Us</button>
-          <button>Our Policy</button>
-          <button onClick={() => navigate("/profile")}>Profile</button>
-          <button>Admin</button>
+          <button onClick={() => navigate("/get-quote")}>Apply Loan</button>
+          <a href="#contactUs">
+            <button onClick={() => setShowMenu(!showMenu)}>Contact Us</button>
+          </a>
+          <button onClick={() => navigate("/privacy-policy")}>
+            Privacy Policy
+          </button>
+
+          <button onClick={() => navigate("terms-conditions")}>
+            Terms & Conditions
+          </button>
         </section>
       )}
     </div>

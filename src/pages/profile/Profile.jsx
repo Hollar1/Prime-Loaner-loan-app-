@@ -4,6 +4,7 @@ import male_icon from "../../assets/images/male_icon.webp";
 import female_icon from "../../assets/images/female_icon.webp";
 import { Line, Circle } from "rc-progress";
 import back_icon from "../../assets/icons/back_icon.png";
+
 import {
   MdOutlineMail,
   MdOutlinePhone,
@@ -11,11 +12,15 @@ import {
   MdKeyboardArrowDown,
   MdCalendarMonth,
 } from "react-icons/md";
+import { useState } from "react";
 
 function Profile() {
+  const [showPayment_history, setShowPayment_history] = useState(false);
+
   return (
     <div className={styles.parent_wrapper}>
       <NavBar goBack={back_icon} pageHeader={"Profile"} />
+    
       <div className={styles.wrapper}>
         <section className={styles.sec_01}>
           <img src={male_icon} alt="" />
@@ -100,40 +105,38 @@ function Profile() {
               <MdCalendarMonth />
             </div>
             <p>Previous Monthly Payment</p>
-            <span>
+            <span onClick={() => setShowPayment_history(!showPayment_history)}>
               <MdKeyboardArrowDown />
             </span>
           </article>
 
-     
+          {showPayment_history && (
+            <div>
+              <main>
+                <aside>
+                  <strong>$240.00</strong>
+                  <p>March 15, 2025</p>
+                </aside>
+                <span>5 of 6 months</span>
+              </main>
 
-          <main>
-            <aside>
-              <strong>$240.00</strong>
-              <p>March 15, 2025</p>
-            </aside>
-            <span>5 of 6 months</span>
-          </main>
+              <main>
+                <aside>
+                  <strong>$240.00</strong>
+                  <p>February 15, 2025</p>
+                </aside>
+                <span>4 of 6 months</span>
+              </main>
 
-          <main>
-            <aside>
-              <strong>$240.00</strong>
-              <p>February 15, 2025</p>
-            </aside>
-            <span>4 of 6 months</span>
-          </main>
-
-          <main>
-            <aside>
-              <strong>$240.00</strong>
-              <p>January 15, 2025</p>
-            </aside>
-            <span>3 of 6 months</span>
-          </main>
-
-
-
-
+              <main>
+                <aside>
+                  <strong>$240.00</strong>
+                  <p>January 15, 2025</p>
+                </aside>
+                <span>3 of 6 months</span>
+              </main>
+            </div>
+          )}
         </section>
       </div>
     </div>

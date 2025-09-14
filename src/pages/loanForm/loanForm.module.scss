@@ -78,6 +78,10 @@
             border: solid 0.2px map-get($colors, color_09);
             background-color: map-get($colors, color_11);
             width: 100%;
+            padding-inline-start: 7px;
+            &:focus {
+              border: solid 0.5px map-get($colors, color_01);
+            }
           }
         }
       } //   .select_sec
@@ -94,23 +98,28 @@
           align-items: center;
           font-weight: map-get($fontWidth, medium);
           font-size: map-get($fontSize, medium);
-          margin-top:map-get($marginTop,medium);
+          margin-top: map-get($marginTop, medium);
           p {
             width: 70% !important;
           }
           input {
             font-size: 14px;
+            &:focus {
+              border: solid 0.5px map-get($colors, color_01);
+            }
           }
         }
       }
       .textarea {
         width: 100%;
+        
         textarea {
           width: 100%;
           height: 90px;
           border-radius: 7px;
           border: solid 0.2px map-get($colors, color_09);
           background-color: map-get($colors, color_11);
+          padding: 7px;
         }
       }
       .sec_03 {

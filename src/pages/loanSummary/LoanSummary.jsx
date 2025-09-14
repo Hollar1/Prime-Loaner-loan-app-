@@ -2,10 +2,15 @@ import styles from "../loanSummary/loanSummary.module.scss";
 import NavBar from "../../components/navBar/NavBar";
 import back_icon from "../../assets/icons/back_icon.png";
 import Button, { Cancel_button } from "../../components/button/Button";
+import Modal from "../../components/modal/Modal";
+import { useState } from "react";
 function LoanSummary() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className={styles.parent_wrapper}>
       <NavBar goBack={back_icon} pageHeader={"Loan Summary"} />
+
+      {showModal && <Modal />}
       <div className={styles.wrapper}>
         <header>
           <h3>Motor Bike Loan</h3>
@@ -41,7 +46,11 @@ function LoanSummary() {
           </div>
         </section>
         <section className={styles.sec_02}>
-          <Button children={"Submit Application"} type={"submit"} />
+          <Button
+            children={"Submit Application"}
+            type={"submit"}
+            onClick={() => setShowModal(true)}
+          />
         </section>
         <section className={styles.sec_03}>
           <Cancel_button children={"Cancel Application"} />
