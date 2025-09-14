@@ -7,6 +7,7 @@ import Profile from "./pages/profile/Profile";
 import PrivacyPolicy from "./pages/privacyPolicy/PrivacyPolicy";
 import TermsConditions from "./pages/termsConditions/TermsConditions";
 import ScrollToTop from "./utils/ScrollToTop";
+import HomePage from "./ADMIN/homepage/HomePage";
 function App() {
   return (
     <Router>
@@ -19,6 +20,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-conditions" element={<TermsConditions />} />
+        {/* ADMIN */}
+        <Route path="/home-page" element={<HomePage />} />
       </Routes>
     </Router>
   );

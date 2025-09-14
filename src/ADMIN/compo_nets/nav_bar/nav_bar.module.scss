@@ -1,0 +1,49 @@
+@import "../../../../public/styles_prop.scss";
+
+.wrapper {
+  nav {
+    background-color: white;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+    color: map-get($colors, color_03);
+    backdrop-filter: blur(4px);
+    position: fixed;
+    width: 100%;
+    left: 0%;
+    top: 0%;
+    div {
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+    }
+    main {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+      aside {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        strong {
+          font-family: roboto;
+          font-size: map-get($fontSize, xx_large);
+        }
+        p {
+          font-family: inter;
+          font-weight: map-get($fontWidth, medium);
+          color: map-get($colors, color_09);
+          font-size: map-get($fontSize, large);
+        }
+      }
+    }
+    h3 {
+      @include _header;
+      display: flex;
+      align-items: center;
+    }
+  }
+}

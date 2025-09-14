@@ -65,6 +65,8 @@ function NavBar({
           <button onClick={() => navigate("terms-conditions")}>
             Terms & Conditions
           </button>
+
+          <button onClick={() => navigate("/home-page")}>Admin</button>
         </section>
       )}
     </div>

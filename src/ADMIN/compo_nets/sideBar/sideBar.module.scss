@@ -1,0 +1,82 @@
+@import "../../../../public/styles_prop.scss";
+.parent_wrapper {
+  .wrapper {
+    position: fixed;
+    height: 100vh;
+    max-height: 810px;
+    left: 0.2%;
+    top: 0%;
+    width: 12%;
+    background-color: white;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+
+    z-index: 600;
+
+    header {
+      padding-top: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      h3 {
+        font-family: poppins;
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+      }
+    }
+    .sec_01 {
+      padding-top: map-get($marginTop, xxx_large);
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      div {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        align-items: center;
+        padding-left: 8px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        &:hover {
+          cursor: pointer;
+          border-bottom: solid 2px map-get($colors, color_01);
+          background-color: rgb(226, 223, 223);
+          background-color: map-get($colors, color_07);
+        }
+        strong {
+          font-family: inter;
+          font-weight: map-get($fontWidth, large);
+          font-size: map-get($fontSize, xx_large);
+        }
+      }
+    } // .sec_01 scope ends here
+    .sec_02 {
+      position: absolute;
+      bottom: 0.5%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      button {
+        width: 100%;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        padding: 0px 10px;
+        font-size: map-get($fontSize, xx_large);
+        font-weight: map-get($fontWidth, xxx_large);
+        color: brown;
+        gap: 20px;
+        border: none;
+        outline: none;
+        background-color: map-get($colors, color_07);
+        &:hover {
+            cursor: pointer;
+          background-color: map-get($colors, color_05);
+        }
+      }
+    } // .sec_02 scope ends here
+  } // Wrapper scope ends here
+} // Parent_wrapper scope ends here
