@@ -7,12 +7,11 @@
     height: 100%;
     min-height: 100vh;
     .sec_01 {
-      padding-top: map-get($marginTop, xx_large);
+      padding-top: map-get($marginTop, large);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 3px;
+      gap: 20px;
       img {
         width: 60px;
         height: 60px;
@@ -20,20 +19,22 @@
         border: solid 0.5px map-get($colors, color_01);
         padding: 3px;
       }
-      strong {
-        font-family: roboto;
-        font-size: map-get($fontSize, x_large);
-      }
+      div {
+        strong {
+          font-family: roboto;
+          font-size: map-get($fontSize, x_large);
+        }
 
-      p {
-        font-family: inter;
-        font-size: map-get($fontSize, medium);
-        color: map-get($colors, color_09);
-      }
-      span {
-        font-family: inter;
-        font-size: map-get($fontSize, small);
-        color: map-get($colors, color_09);
+        p {
+          font-family: inter;
+          font-size: map-get($fontSize, medium);
+          color: map-get($colors, color_09);
+        }
+        span {
+          font-family: inter;
+          font-size: map-get($fontSize, small);
+          color: map-get($colors, color_09);
+        }
       }
       button {
         margin-top: map-get($marginTop, medium);
@@ -50,14 +51,15 @@
       }
     } // .sec_01 scope ends here
     .sec_02 {
-      margin-top: map-get($marginTop, xx_large);
+      margin-top: map-get($marginTop, x_large);
       background-color: white;
       box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
 
       h3 {
         @include _subHeader;
-        padding: 10px;
+        padding: 5px;
+        margin-bottom: -10px;
       }
       article {
         display: flex;
@@ -68,10 +70,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 40px;
-          height: 40px;
           border-radius: 50%;
-          background-color: map-get($colors, color_11);
           font-size: 18px;
           margin-right: 10px;
         }
@@ -113,71 +112,62 @@
         width: 100%;
         align-items: center;
         padding: 10px 15px;
-        div {
-          &:first-child {
-            width: 65%;
+
+        .payment_div {
+          display: flex;
+          flex-direction: column;
+          .totalLoan {
             display: flex;
-            justify-content: center;
+            flex-direction: row;
+            font-family: inter;
             align-items: center;
-            aside {
-              position: absolute;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center;
-              padding: 10px;
-              gap: 5px;
-              hr {
-                width: 100%;
-                margin-bottom: 8px;
-                margin-top: 3px;
-              }
-              div {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                height: 100%;
-                p {
-                  font-family: inter;
-                  font-size: map-get($fontSize, medium);
-                  color: map-get($colors, color_09);
-                }
-                b {
-                  font-family: roboto;
-                  font-size: map-get($fontSize, medium);
-                }
-              }
+            gap: 5px;
+            strong {
+              font-weight: map-get($fontWidth, large);
+              font-size: map-get($fontSize, medium);
             }
           }
-          &:last-child {
+          .RemainingBalance {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            font-family: inter;
             align-items: center;
-            justify-content: center;
             gap: 5px;
-            margin-top: -10px;
-            span {
-              font-family: inter;
-              color: map-get($colors, color_09);
-              font-size: map-get($fontSize, xx_large);
+            strong {
+              font-weight: map-get($fontWidth, large);
+              font-size: map-get($fontSize, medium);
             }
-            p {
-              font-family: inter;
-              color: black;
-              font-size: map-get($fontSize, xx_large);
-            }
-            button {
-              width: 120px;
-              height: 30px;
-              border: none;
-              outline: none;
-              border-radius: 10px;
-              font-size: map-get($fontSize, large);
-              font-weight: map-get($fontWidth, xx_large);
-              background-color: map-get($colors, color_12);
-              &:active {
-                background-color: map-get($colors, color_13);
-              }
+          }
+        }
+
+        .payment_date_div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+          margin-top: -10px;
+          span {
+            font-family: inter;
+            color: map-get($colors, color_09);
+            font-size: map-get($fontSize, x_large);
+          }
+          p {
+            font-family: inter;
+            color: black;
+            font-size: map-get($fontSize, x_large);
+          }
+          button {
+            width: 120px;
+            height: 30px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            font-size: map-get($fontSize, large);
+            font-weight: map-get($fontWidth, xx_large);
+            background-color: map-get($colors, color_12);
+            &:active {
+              background-color: map-get($colors, color_13);
             }
           }
         }
@@ -185,7 +175,7 @@
     } // .sec_03 scope ends here
 
     .sec_04 {
-      margin-top: map-get($marginTop, x_large);
+      margin-top: map-get($marginTop, large);
       background-color: white;
       box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
@@ -198,6 +188,7 @@
         justify-content: space-between;
         margin-top: map-get($marginTop, large);
         align-items: center;
+         border-bottom: dotted map-get($colors, color_07) 0.5px;
         div {
           font-size: 22px;
           display: flex;
@@ -212,6 +203,34 @@
           font-size: 35px;
           display: flex;
           align-items: center;
+        }
+      }
+      main {
+        margin-top: map-get($marginTop, medium);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: solid map-get($colors, color_07) 0.1px;
+        padding-bottom: 5px;
+        aside {
+          display: flex;
+          flex-direction: column;
+
+          strong {
+            font-family: inter;
+            font-size: map-get($fontSize, medium);
+            font-weight: map-get($fontWidth, medium);
+          }
+          p {
+            font-family: inter;
+            font-size: map-get($fontSize, small);
+            color: map-get($colors, color_09);
+          }
+        }
+        span {
+          font-family: inter;
+          font-size: map-get($fontSize, medium);
+          color: map-get($colors, color_09);
         }
       }
     } // .sec_04 scope ends here
