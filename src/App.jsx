@@ -8,6 +8,12 @@ import PrivacyPolicy from "./pages/privacyPolicy/PrivacyPolicy";
 import TermsConditions from "./pages/termsConditions/TermsConditions";
 import ScrollToTop from "./utils/ScrollToTop";
 import HomePage from "./ADMIN/homepage/HomePage";
+import Applications from "./ADMIN/applications/Applications";
+
+import AllUsers from "../src/ADMIN/allUsers/AllUsers";
+import ApplicationDetails from "./ADMIN/applicationDetails/ApplicationDetails";
+import Loans from "./ADMIN/loans/Loans";
+import UserProfile from "./ADMIN/userProfile/UserProfile";
 function App() {
   return (
     <Router>
@@ -22,6 +28,11 @@ function App() {
         <Route path="/terms-conditions" element={<TermsConditions />} />
         {/* ADMIN */}
         <Route path="/home-page" element={<HomePage />} />
+        <Route path="/applications" element={<Applications />} />
+        <Route path="/all-users" element={<AllUsers />} />
+        <Route path="/loans" element={<Loans/>} />
+        <Route path="/user-profile" element={<UserProfile/>} />
+        <Route path="/application-details" element={<ApplicationDetails />} />
       </Routes>
     </Router>
   );

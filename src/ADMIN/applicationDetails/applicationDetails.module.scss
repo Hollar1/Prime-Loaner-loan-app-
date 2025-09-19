@@ -1,0 +1,216 @@
+@import "../../../public/styles_prop.scss";
+
+.parent_wrapper {
+  background-color: map-get($colors, admin_background_color);
+  .wrapper {
+    @include admin_wrapper_B;
+
+    .sec_01 {
+      display: flex;
+      justify-content: space-between;
+      div {
+        &:first-child {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          h3 {
+            font-family: roboto;
+            font-size: map-get($fontSize, xxx_large);
+          }
+          span {
+            font-size: map-get($fontSize, medium);
+            color: map-get($colors, color_09);
+            font-family: inter;
+          }
+        } //  &:first-child scope ends here
+
+        &:last-child {
+          display: flex;
+          gap: 45px;
+          button {
+            width: 120px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 6px;
+            font-size: map-get($fontSize, large);
+            gap: 12px;
+            color: white;
+            &:first-child {
+              background-color: map-get($colors, color_26);
+              &:hover {
+                background-color: map-get($colors, color_22);
+                cursor: pointer;
+              }
+              &:active {
+                background-color: map-get($colors, color_26);
+              }
+            }
+            &:last-child {
+              background-color: map-get($colors, color_27);
+              &:hover {
+                background-color: map-get($colors, color_24);
+                cursor: pointer;
+              }
+
+              &:active {
+                background-color: map-get($colors, color_27);
+              }
+            }
+          }
+        } // &:last-chide scope ends here
+      }
+    } // .sec_01 ends here
+
+    .sec_02 {
+      margin-top: map-get($marginTop, large);
+      display: grid;
+      grid-template-columns: 60% 40%;
+      gap: 25px;
+      article {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        main {
+          display: flex;
+          flex-direction: column;
+          background-color: white;
+          border-radius: 8px;
+          padding: 15px;
+
+          h4 {
+            margin-bottom: 20px;
+            font-family: inter;
+            font-size: map-get($fontSize, x_large);
+          }
+          div {
+            background-color: white;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            aside {
+              display: flex;
+              flex-direction: column;
+              font-weight: map-get($fontWidth, medium);
+              gap: 2px;
+              span {
+                color: map-get($colors, color_09);
+                font-family: inter;
+                font-size: map-get($fontSize, medium);
+              }
+              p {
+                font-family: roboto;
+                font-weight: map-get($fontWidth, xx_small);
+                color: black;
+                font-size: map-get($fontSize, large);
+              }
+            }
+            .add {
+              width: 100%;
+              button {
+                width: 100%;
+                background-color: blue;
+                height: 35px;
+                font-size: map-get($fontSize, xxx_large);
+                font-weight: map-get($fontWidth, large);
+                letter-spacing: 0.3px;
+                color: white;
+                border: none;
+                &:hover {
+                  background-color: rgb(64, 64, 239);
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+          nav {
+            font-family: inter;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            button {
+              border: none;
+              background-color: transparent;
+              color: blue;
+              font-size: map-get($fontSize, xx_large);
+              outline: none;
+              margin-right: 15px;
+              font-weight: map-get($fontWidth, x_large);
+              letter-spacing: 0.3px;
+              &:hover {
+                cursor: pointer;
+                color: rgb(95, 95, 241);
+              }
+            }
+          }
+          > span {
+            color: map-get($colors, color_09);
+            margin-top: -15px;
+            background-color: rgb(249, 246, 246);
+            padding: 10px;
+            line-height: 28px;
+            font-family: inter;
+          }
+        } // Main scop ends here
+
+        .arrangePayment {
+          background-color: map-get($colors, color_10);
+          width: 100%;
+
+          div {
+            display: flex;
+            flex-direction: column;
+            padding: 15px !important;
+            width: 100%;
+            label {
+              display: flex;
+              width: 100%;
+              align-items: center;
+              gap: 10px;
+              font-family: roboto;
+              font-weight: map-get($fontWidth, medium);
+
+              select {
+                width: 220px;
+                height: 35px;
+                padding: 0% 10px;
+                font-size: map-get($fontSize, x_large);
+              }
+              input {
+                width: 220px;
+                height: 35px;
+                padding: 0% 10px;
+                font-size: map-get($fontSize, x_large);
+              }
+            }
+
+            article {
+              margin-top: map-get($marginTop, medium);
+
+              button {
+                height: 35px;
+                font-size: map-get($fontSize, xxx_large);
+                font-weight: map-get($fontWidth, large);
+                letter-spacing: 0.3px;
+                color: white;
+                border: none;
+                &:first-child {
+                }
+                &:last-child {
+                  background-color: green;
+                  &:hover {
+                    background-color: rgb(8, 189, 8);
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+        }
+      } // Article scope ends here
+    } // .sec_02 ends here
+  } // wrapper scope ends here
+} // Parent_wrapper scope ends here

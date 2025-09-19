@@ -1,22 +1,24 @@
 import styles from "../../compo_nets/nav_bar/nav_bar.module.scss";
 import { AiOutlineBars } from "react-icons/ai";
 import { FaRegBell } from "react-icons/fa";
-function Nav_bar() {
+function Nav_bar({ value }) {
   return (
     <div className={styles.wrapper}>
       <nav>
-        <div>
-          <AiOutlineBars />
-        </div>
-        <h3>Dashboard</h3>
+        <section className={styles.sec_01}>
+          <div>
+            <input type="text" placeholder="Search" />
+          </div>
+          <select name="" id=""></select>
+          <select name="" id=""></select>
+        </section>
 
-        <main>
-          <FaRegBell size={25} />
-          <aside>
+        <section className={styles.sec_02}>
+          <div>
             <strong>Abdulkareem Umar</strong>
             <p>abdulkareemumar1989@gmail,com</p>
-          </aside>
-        </main>
+          </div>
+        </section>
       </nav>
     </div>
   );

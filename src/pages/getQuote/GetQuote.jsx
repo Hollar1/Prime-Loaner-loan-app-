@@ -4,13 +4,14 @@ import bike_01 from "../../assets/images/bikes/bike_01.png";
 import rickshaw_01 from "../../assets/images/rickshaw/rickshaw_01.png";
 import business_01 from "../../assets/images/business/business_01.png";
 import car_01 from "../../assets/images/cars/car_01.png";
-import { FaRegCircle,} from "react-icons/fa6";
+import { FaRegCircle } from "react-icons/fa6";
 import back_icon from "../../assets/icons/back_icon.png";
 import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
 
 function GetQuote() {
   const navigate = useNavigate();
+
   return (
     <div className={styles.parent_wrapper}>
       <NavBar logo={""} pageHeader={"Select Loan Type"} goBack={back_icon} />
@@ -64,8 +65,39 @@ function GetQuote() {
             <FaRegCircle className={styles.input} />
           </article>
         </section>
-
+        <hr />
         <section className={styles.sec_02}>
+          <h3> Schedule Payment</h3>
+
+          <article>
+            <label htmlFor="">
+              Payment Term
+              <select name="" id="">
+                <option value="">--Select--</option>
+                <option value="">6 Months</option>
+                <option value="">9 Months</option>
+                <option value="">12 Months</option>
+                <option value="">15 Months</option>
+                <option value="">18 Months</option>
+                <option value="">21 Months</option>
+                <option value="">24 Months</option>
+              </select>
+            </label>
+
+            <label htmlFor="">
+              Payment Plan
+              <select name="" id="">
+                <option value="">--Select--</option>
+                <option value="">Daily</option>
+                <option value="">Weekly</option>
+                <option value="">Monthly</option>
+              </select>
+            </label>
+          </article>
+          <hr />
+        </section>
+
+        <section className={styles.sec_03}>
           <h3>Loan Estimation</h3>
           <article>
             <div>
@@ -76,11 +108,6 @@ function GetQuote() {
               <p>Loan Term</p>
               <span>6 Months</span>
             </div>
-            <div>
-              <p>Interest</p>
-              <span>₦455,000.00</span>
-            </div>
-            <hr />
             <div>
               <p>Monthly Payment</p>
               <strong>₦75,000</strong>
@@ -95,6 +122,8 @@ function GetQuote() {
         <section className={styles.sec_03}>
           <Button children={"Next"} onClick={() => navigate("/loan-form")} />
         </section>
+
+       
       </div>
     </div>
   );

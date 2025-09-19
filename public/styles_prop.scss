@@ -17,6 +17,20 @@ $colors: (
   color_14: #1173d4,
   color_15: #111827,
   color_16: rgba(31, 41, 55, 0.5),
+  color_17: #398de2,
+ 
+
+  // COLOR_B
+  color_18: #92400e,
+  color_19: #fef9c3,
+  color_20: #1e40af,
+  color_21: #dbeafe,
+  color_22: #065f46,
+  color_23: #d1fae5,
+  color_24: #991b1b,
+  color_25: #fee2e2,
+  color_26: #16a34a,
+  color_27: #dc2626,
 );
 
 $fontSize: (
@@ -59,6 +73,24 @@ $marginTop: (
   xx_large: 30px,
   xxx_large: 80px,
 );
+
+@mixin admin_wrapper {
+  width: calc(100% - 180px);
+  height: calc(100vh - 60px);
+  border: solid 3px map-get($colors, color_10);
+  margin-top: 60px;
+  margin-left: 180px;
+}
+
+@mixin admin_wrapper_B {
+  width: calc(100% - 180px);
+  height: calc(100vh - 45px);
+  border: solid 3px map-get($colors, color_10);
+  margin-left: 180px;
+  padding: 0px 15px;
+  margin-top: 45px !important;
+  padding-top: 25px;
+}
 
 @mixin _header {
   font-weight: map-get($fontWidth, xxx-large);

@@ -1,6 +1,13 @@
 @import "../../../public/styles_prop.scss";
 
 .parent_wrapper {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  background-color: white;
+  top: 0%;
+  left: 0%;
   .wrapper {
     @include wrapper;
     padding: 0px 10px;
@@ -13,6 +20,7 @@
         @include _text;
         color: map-get($colors, color_09);
         margin-top: map-get($marginTop, large);
+        text-align: center;
       }
     }
     .sec_01 {

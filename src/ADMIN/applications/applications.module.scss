@@ -1,0 +1,97 @@
+@import "../../../public/styles_prop.scss";
+
+.parent_wrapper {
+  .wrapper {
+    @include admin_wrapper;
+
+    .sec_02 {
+      //   padding-top: map-get($marginTop, xx_large);
+      width: 100%;
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        tr,
+        thead,
+        th,
+        tbody,
+        td {
+          border: solid gray 0.5px;
+        }
+
+        th {
+          background-color: map-get($colors, color_07);
+          font-family: roboto;
+          padding: 8px 0px;
+          font-size: map-get($fontSize, xx_large);
+        }
+        td {
+          font-family: inter;
+          padding: 5px 3px;
+          text-align: center;
+          font-size: map-get($fontSize, x_large);
+          font-weight: map-get($fontWidth, medium);
+          letter-spacing: 0.3px;
+          text-transform: capitalize;
+          button {
+            width: 100%;
+            max-width: 150px;
+            border-radius: 5px;
+            background-color: map-get($colors, color_14);
+            border: none;
+            color: white;
+            height: 25px;
+            font-size: map-get($fontSize, medium);
+            font-weight: map-get($fontWidth, x_large);
+            letter-spacing: 0.3px;
+            &:hover {
+              cursor: pointer;
+              background-color: map-get($colors, color_17);
+            }
+          }
+          div {
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: map-get($fontSize, medium);
+            font-weight: map-get($fontWidth, large);
+            letter-spacing: 0.3px;
+          }
+        }
+        // color progress started here
+        .pending {
+          color: map-get($colors, color_18);
+          background-color: map-get($colors, color_19);
+          width: 75%;
+          margin: auto;
+          border-radius: 15px;
+        }
+
+        .in_review {
+          color: map-get($colors, color_20);
+          background-color: map-get($colors, color_21);
+          width: 75%;
+          margin: auto;
+          border-radius: 15px;
+        }
+
+        .approved {
+          color: map-get($colors, color_22);
+          background-color: map-get($colors, color_23);
+          width: 75%;
+          margin: auto;
+          border-radius: 15px;
+        }
+
+        .declined {
+          color: map-get($colors, color_24);
+          background-color: map-get($colors, color_25);
+          width: 75%;
+          margin: auto;
+          border-radius: 15px;
+        }
+        // color progress ends here
+      } // Table scope end here
+    }
+  } // Wrapper scope ends here
+} // Parent_wrapper scope ends here
