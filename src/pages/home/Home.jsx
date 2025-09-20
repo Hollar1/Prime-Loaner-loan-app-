@@ -271,7 +271,7 @@ function Home() {
             <h3>What You Need to Apply</h3>
 
             <div>
-              <IoCheckmarkCircleOutline color="#f2a20d" fontSize={23} />{" "}
+              <IoCheckmarkCircleOutline color="#f2a20d" size={23} />{" "}
               <p>Government-issued ID (NIN)</p>
             </div>
 
@@ -281,17 +281,17 @@ function Home() {
             </div>
 
             <div>
-              <IoCheckmarkCircleOutline color="#f2a20d" fontSize={23} />{" "}
+              <IoCheckmarkCircleOutline color="#f2a20d" fontSize={30} />{" "}
               <p>1 Guarantor (must have property worth 5 million Naira)</p>
             </div>
 
             <div>
-              <IoCheckmarkCircleOutline color="#f2a20d" fontSize={23} />{" "}
+              <IoCheckmarkCircleOutline color="#f2a20d" fontSize={30} />{" "}
               <p>1 Reference (must have property worth 2 million Naira)</p>
             </div>
 
             <div>
-              <IoCheckmarkCircleOutline color="#f2a20d" fontSize={23} />{" "}
+              <IoCheckmarkCircleOutline color="#f2a20d" fontSize={25} />{" "}
               <p>Non-refundable 10,000 Naira application fee</p>
             </div>
           </section>
@@ -300,21 +300,21 @@ function Home() {
             <h3>Why Choose Us?</h3>
 
             <article>
-              <IoMdTime color="#f2a20d" fontSize={23} />
+              <IoMdTime color="#f2a20d" fontSize={30} />
               <div>
                 <h4>Fast Approvals</h4>
                 <p>Get decision quickly so you can focus on your business.</p>
               </div>
             </article>
             <article>
-              <TbCurrencyNaira color="#f2a20d" fontSize={23} />
+              <TbCurrencyNaira color="#f2a20d" fontSize={30} />
               <div>
                 <h4>Competitive Rates</h4>
                 <p>We offer affordable rates to help your finances.</p>
               </div>
             </article>
             <article>
-              <LiaHandsHelpingSolid color="#f2a20d" fontSize={23} />
+              <LiaHandsHelpingSolid color="#f2a20d" fontSize={30} />
               <div>
                 <h4>Personalized Service</h4>
                 <p>Get decision quickly so you can focus on your business.</p>
@@ -331,7 +331,7 @@ function Home() {
             </div>
 
             <aside>
-              <button>View All Reviews</button>
+              <button>All Reviews</button>
             </aside>
           </section>
 
@@ -420,7 +420,7 @@ function Home() {
 
           <section className={styles.sec_08}>
             <h3>About Us</h3>
-            <p>
+           
               <p>
                 At Prime Loaner, we’re here to support motorcycle riders,
                 rickshaw operators, and car drivers with easy, flexible loan
@@ -429,7 +429,7 @@ function Home() {
                 why our goal is to remove the stress of traditional banking by
                 giving you fast access to the financial help you deserve.
               </p>
-            </p>
+       
           </section>
 
           <section className={styles.sec_09} id="contactUs">

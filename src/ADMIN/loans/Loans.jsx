@@ -86,21 +86,24 @@ function Loans() {
                 </select>
               </label>
 
-              <label htmlFor="">
-                Loan Term(Months)
-                <select name="" id="">
-                  <option value="">--Select--</option>
-                  <option value="car">6 Months</option>
-                  <option value="car">8 Months</option>
-                  <option value="car">10 Months</option>
-                  <option value="car">12 Months</option>
-                  <option value="car">14 Months</option>
-                  <option value="car">16 Months</option>
-                  <option value="car">18 Months</option>
-                  <option value="car">20 Months</option>
-                  <option value="car">22 Months</option>
-                  <option value="car">24 Months</option>
-                </select>
+              <label className={styles.loan_term_A}>
+                <p className={styles.p}> Loan Term(Months)</p>
+                <div className={styles.loan_term}>
+                  <select name="" id="">
+                    <option value="">--Select--</option>
+                    <option value="car">6 Months</option>
+                    <option value="car">8 Months</option>
+                    <option value="car">10 Months</option>
+                    <option value="car">12 Months</option>
+                    <option value="car">14 Months</option>
+                    <option value="car">16 Months</option>
+                    <option value="car">18 Months</option>
+                    <option value="car">20 Months</option>
+                    <option value="car">22 Months</option>
+                    <option value="car">24 Months</option>
+                  </select>
+                  <button>Add</button>
+                </div>
               </label>
             </div>
 
@@ -120,7 +123,7 @@ function Loans() {
                 Loan Note
                 <textarea name="" id=""></textarea>
               </label>
-              <button>Add Loan</button>
+              <button className={styles.add_loan}>Add Loan</button>
             </div>
           </article>
         </section>

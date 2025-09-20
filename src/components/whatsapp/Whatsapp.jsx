@@ -3,7 +3,10 @@ import whatsapp_icon from "../../assets/icons/whatsapp_icon.png";
 function Whatsapp() {
   return (
     <div className={styles.wrapper}>
-      <img src={whatsapp_icon} alt="" />
+      <a href="https://wa.me/message/LAQB7NVLMNHVM1">
+
+        <img src={whatsapp_icon} alt="" />
+      </a>
     </div>
   );
 }

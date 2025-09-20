@@ -244,6 +244,7 @@
           p {
             @include _text;
             margin-bottom: map-get($marginTop, large);
+            color: map-get($colors, color_09);
           }
         }
       } // .sec_03 ends here
@@ -262,6 +263,7 @@
           margin-bottom: 15px;
           p {
             @include _text;
+            color: map-get($colors, color_09);
           }
         }
       } // .sec_04 ends here
@@ -281,10 +283,11 @@
             flex-direction: column;
             h4 {
               @include _subHeader;
-              font-size: map-get($fontSize, xx_large);
+              font-size: map-get($fontSize, x_large);
             }
             p {
               @include _text;
+              color: map-get($colors, color_09);
             }
           }
         }
@@ -367,7 +370,7 @@
           }
           span {
             @include _text;
-            color: map-get($colors, color_03);
+            color: map-get($colors, color_09);
           }
         }
       } // .sec_07 ends here
@@ -383,7 +386,7 @@
         }
         p {
           @include _text;
-          color: map-get($colors, color_03);
+          color: map-get($colors, color_09);
           margin-top: map-get($marginTop, medium);
         }
       } // .sec_08 ends here

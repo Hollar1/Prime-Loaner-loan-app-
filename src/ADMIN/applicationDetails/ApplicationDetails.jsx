@@ -53,7 +53,7 @@ function ApplicationDetails() {
 
         <section className={styles.sec_02}>
           <article>
-            <main>
+            <main className={styles.main_01}>
               <h4>Personal Information</h4>
               <div>
                 <aside>
@@ -75,7 +75,7 @@ function ApplicationDetails() {
               </div>
             </main>
 
-            <main>
+            <main className={styles.main_02}>
               <h4>Residential Address</h4>
               <div>
                 <aside>
@@ -106,7 +106,7 @@ function ApplicationDetails() {
               </div>
             </main>
 
-            <main>
+            <main className={styles.main_03}>
               <h4>Financial & Loan Details</h4>
               <div>
                 <aside>
@@ -114,12 +114,20 @@ function ApplicationDetails() {
                   <p>Bike Man</p>
                 </aside>
                 <aside>
-                  <span>Daily Income</span>
-                  <p>₦15,000</p>
-                </aside>
-                <aside>
                   <span>Loan Type</span>
                   <p>Motor Bike</p>
+                </aside>
+                <aside>
+                  <span>Payment Term</span>
+                  <p>9 Months</p>
+                </aside>
+                <aside>
+                  <span>Payment Plan</span>
+                  <p>Monthly</p>
+                </aside>
+                <aside>
+                  <span>Daily Income</span>
+                  <p>₦15,000</p>
                 </aside>
                 <aside>
                   <span>Loan Amount</span>
@@ -128,45 +136,50 @@ function ApplicationDetails() {
               </div>
             </main>
 
-            <main>
-              <nav>
-                NIN <button>View</button>
-              </nav>
-              <nav>
-                Utility Bill <button>View</button>
-              </nav>
+            <main className={styles.main_04}>
+              <h4>Documents</h4>
+              <div>
+                <p>
+                  NIN <button>View</button>
+                </p>
+                <p>
+                  Utility Bill <button>View</button>
+                </p>
+              </div>
             </main>
           </article>
 
           <article>
             <main>
-              <h4>House Description</h4>
-              <span>
+              <h4>House description</h4>
+              <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque
                 modi tempore vel quaerat fuga nobis iusto eligendi velit est,
                 debitis rerum eum? Doloribus molestias quod, aut molestiae porro
                 ab sunt?
-              </span>
+              </p>
             </main>
 
-            <main className={styles.arrangePayment}>
-              <h4>Complete User Account</h4>
-
-              <div>
+            <main>
+              <h4>Add Plate Num & Tracker I'D</h4>
+              <aside>
                 <label htmlFor="">
-                  Plate Num.
+                  Plate Num:
                   <input type="text" />
                 </label>
                 <label htmlFor="">
-                  Tracker I'D
+                  Tracker I'D:
                   <input type="text" />
                 </label>
-                <footer className={styles.add}>
-                  <button onClick={() => handleAddPayment()}>Add</button>
-                </footer>
+              </aside>
+              <button onClick={() => handleAddPayment()}>Add</button>
+            </main>
 
+            <main>
+              <h4>Schedule Payments</h4>
+              <aside>
                 <label htmlFor="">
-                  Payment Num
+                  Payment Num:
                   <select name="" id="">
                     <option value="">--Select--</option>
                     <option value="payment-01">Payment 01</option>
@@ -214,16 +227,11 @@ function ApplicationDetails() {
                     onChange={handleOnChange}
                   />
                 </label>
-
-                <article>
-                  <button>Create</button>
-                </article>
-              </div>
+              </aside>
+              <button onClick={() => handleAddPayment()}>Create</button>
             </main>
           </article>
         </section>
-
-   
       </div>
     </div>
   );

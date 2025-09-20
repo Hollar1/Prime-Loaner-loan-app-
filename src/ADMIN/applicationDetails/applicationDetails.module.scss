@@ -73,143 +73,234 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        main {
-          display: flex;
-          flex-direction: column;
-          background-color: white;
-          border-radius: 8px;
-          padding: 15px;
 
-          h4 {
-            margin-bottom: 20px;
-            font-family: inter;
-            font-size: map-get($fontSize, x_large);
-          }
-          div {
-            background-color: white;
-            border-radius: 8px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            aside {
-              display: flex;
-              flex-direction: column;
-              font-weight: map-get($fontWidth, medium);
-              gap: 2px;
-              span {
-                color: map-get($colors, color_09);
-                font-family: inter;
-                font-size: map-get($fontSize, medium);
-              }
-              p {
-                font-family: roboto;
-                font-weight: map-get($fontWidth, xx_small);
-                color: black;
-                font-size: map-get($fontSize, large);
-              }
-            }
-            .add {
-              width: 100%;
-              button {
-                width: 100%;
-                background-color: blue;
-                height: 35px;
-                font-size: map-get($fontSize, xxx_large);
-                font-weight: map-get($fontWidth, large);
-                letter-spacing: 0.3px;
-                color: white;
-                border: none;
-                &:hover {
-                  background-color: rgb(64, 64, 239);
-                  cursor: pointer;
-                }
-              }
-            }
-          }
-          nav {
-            font-family: inter;
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            button {
-              border: none;
-              background-color: transparent;
-              color: blue;
-              font-size: map-get($fontSize, xx_large);
-              outline: none;
-              margin-right: 15px;
-              font-weight: map-get($fontWidth, x_large);
-              letter-spacing: 0.3px;
-              &:hover {
-                cursor: pointer;
-                color: rgb(95, 95, 241);
-              }
-            }
-          }
-          > span {
-            color: map-get($colors, color_09);
-            margin-top: -15px;
-            background-color: rgb(249, 246, 246);
-            padding: 10px;
-            line-height: 28px;
-            font-family: inter;
-          }
-        } // Main scop ends here
-
-        .arrangePayment {
-          background-color: map-get($colors, color_10);
-          width: 100%;
-
-          div {
+        &:first-child {
+          main {
             display: flex;
             flex-direction: column;
-            padding: 15px !important;
-            width: 100%;
-            label {
-              display: flex;
-              width: 100%;
-              align-items: center;
-              gap: 10px;
-              font-family: roboto;
-              font-weight: map-get($fontWidth, medium);
+            background-color: white;
+            border-radius: 8px;
 
-              select {
-                width: 220px;
-                height: 35px;
-                padding: 0% 10px;
+            &:first-child,
+            &:nth-child(2) {
+              padding: 15px;
+              h4 {
+                margin-bottom: 20px;
+                font-family: inter;
                 font-size: map-get($fontSize, x_large);
               }
-              input {
-                width: 220px;
-                height: 35px;
-                padding: 0% 10px;
-                font-size: map-get($fontSize, x_large);
-              }
-            }
-
-            article {
-              margin-top: map-get($marginTop, medium);
-
-              button {
-                height: 35px;
-                font-size: map-get($fontSize, xxx_large);
-                font-weight: map-get($fontWidth, large);
-                letter-spacing: 0.3px;
-                color: white;
-                border: none;
-                &:first-child {
+              div {
+                background-color: white;
+                border-radius: 8px;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                aside {
+                  display: flex;
+                  flex-direction: column;
+                  font-weight: map-get($fontWidth, medium);
+                  gap: 2px;
+                  span {
+                    color: map-get($colors, color_09);
+                    font-family: inter;
+                    font-size: map-get($fontSize, medium);
+                  }
+                  p {
+                    font-family: roboto;
+                    font-weight: map-get($fontWidth, xx_small);
+                    color: black;
+                    font-size: map-get($fontSize, large);
+                  }
                 }
-                &:last-child {
-                  background-color: green;
+              }
+            } //  &:first-child,&:nth-child(2)
+
+            &:nth-child(3) {
+              padding: 15px;
+              h4 {
+                margin-bottom: 20px;
+                font-family: inter;
+                font-size: map-get($fontSize, x_large);
+              }
+              div {
+                background-color: white;
+                border-radius: 8px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+                aside {
+                  display: flex;
+                  flex-direction: column;
+                  font-weight: map-get($fontWidth, medium);
+                  gap: 2px;
+                  span {
+                    color: map-get($colors, color_09);
+                    font-family: inter;
+                    font-size: map-get($fontSize, medium);
+                  }
+                  p {
+                    font-family: roboto;
+                    font-weight: map-get($fontWidth, xx_small);
+                    color: black;
+                    font-size: map-get($fontSize, large);
+                  }
+                }
+              }
+            } // &:nth-child(3)
+
+            &:last-child {
+              padding: 15px;
+              h4 {
+                margin-bottom: 10px;
+                font-family: inter;
+                font-size: map-get($fontSize, x_large);
+              }
+              div {
+                display: flex;
+                justify-content: space-around;
+
+                p {
+                  color: map-get($colors, color_09);
+                  font-family: inter;
+                  font-size: map-get($fontSize, x_large);
+                  font-weight: map-get($fontWidth, large);
+                  display: flex;
+                  align-items: center;
+                  gap: 15px;
+                }
+                button {
+                  border: none;
+                  background-color: map-get($colors, color_07);
+                  outline: none;
+                  color: map-get($colors, color_14);
+                  font-weight: map-get($fontWidth, x_large);
+                  font-size: map-get($fontSize, large);
+                  border: solid 1px;
+                  width: 80px;
+                  height: 25px;
+                  border-radius: 7px;
+                  letter-spacing: 0.5px;
                   &:hover {
-                    background-color: rgb(8, 189, 8);
+                    background-color: map-get($colors, color_08);
                     cursor: pointer;
+                    color: map-get($colors, color_17);
                   }
                 }
               }
             }
           }
-        }
+        } // Article &:first-child
+
+        &:last-child {
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+          main {
+            p {
+              @include _text;
+              color: map-get($colors, color_09);
+              line-height: 25px;
+            }
+
+            h4 {
+              margin-bottom: 15px;
+              font-family: inter;
+              font-size: map-get($fontSize, x_large);
+              letter-spacing: 0.5px;
+            }
+
+            aside {
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+              label {
+                color: map-get($colors, color_09);
+                font-family: inter;
+                font-size: map-get($fontSize, x_large);
+                font-weight: map-get($fontWidth, large);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                input {
+                  width: 50%;
+                  height: 35px;
+                  font-size: map-get($fontSize, x_large);
+                  padding-inline-start: 10px;
+
+                  background-color: map-get($colors, color_05);
+                  border: solid gray 1px;
+                }
+                select {
+                  width: 50%;
+                  height: 35px;
+                  font-size: map-get($fontSize, x_large);
+                  padding-inline-start: 10px;
+                  background-color: map-get($colors, color_05);
+                  border: solid gray 1px;
+                }
+              }
+            }
+
+            &:nth-child(2) {
+              background-color: map-get($colors, color_28);
+              padding: 20px;
+              button {
+                width: 50%;
+                margin-top: 15px;
+                margin-left: auto;
+                margin-right: auto;
+                display: flex;
+                height: 35px;
+                align-items: center;
+                justify-content: center;
+
+                border-radius: 8px;
+                background-color: map-get($colors, color_14);
+                color: white;
+                font-size: map-get($fontSize, xx_large);
+                font-weight: map-get($fontWidth, x_large);
+                letter-spacing: 0.5px;
+                border: none;
+                &:hover {
+                  background-color: map-get($colors, color_17);
+                  cursor: pointer;
+                }
+                &:active {
+                  background-color: map-get($colors, color_14);
+                }
+              }
+            }
+            &:last-child {
+              background-color: map-get($colors, color_28);
+              padding: 20px;
+              button {
+                width: 50%;
+                margin-top: 15px;
+                margin-left: auto;
+                margin-right: auto;
+                display: flex;
+                height: 35px;
+                align-items: center;
+                justify-content: center;
+
+                border-radius: 8px;
+                background-color: map-get($colors, color_26);
+                color: white;
+                font-size: map-get($fontSize, xx_large);
+                font-weight: map-get($fontWidth, x_large);
+                letter-spacing: 0.5px;
+                border: none;
+                &:hover {
+                  background-color: map-get($colors, color_22);
+                  cursor: pointer;
+                }
+                &:active {
+                  background-color: map-get($colors, color_26);
+                }
+              }
+            }
+          }
+        } // Article &:last-child
       } // Article scope ends here
     } // .sec_02 ends here
   } // wrapper scope ends here
