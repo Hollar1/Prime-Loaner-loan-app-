@@ -1,9 +1,7 @@
 import NavBar from "../../components/navBar/NavBar";
 import styles from "../home/home.module.scss";
 import { HiOutlineBars4 } from "react-icons/hi2";
-import logo from "../../assets/images/logo_02.png";
 import { useEffect, useState } from "react";
-import business from "../../assets/images/business/business_01.png";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { IoMdTime } from "react-icons/io";
 import { TbCurrencyNaira } from "react-icons/tb";
@@ -14,6 +12,7 @@ import Whatsapp from "../../components/whatsapp/Whatsapp";
 import { FaFacebook, FaYoutube, FaSquareInstagram } from "react-icons/fa6";
 import { IoMdCloseCircle } from "react-icons/io";
 import { FaRegCircleUser } from "react-icons/fa6";
+import client_review from "../../utils/reviews";
 
 import bike_01 from "../../assets/images/bikes/bike_01.png";
 import bike_02 from "../../assets/images/bikes/bike_02.png";
@@ -35,7 +34,7 @@ import car_02 from "../../assets/images/cars/car_02.png";
 import car_03 from "../../assets/images/cars/car_03.png";
 import car_04 from "../../assets/images/cars/car_04.png";
 import { useNavigate } from "react-router-dom";
-import Modal from "../../components/modal/Modal";
+
 
 const business_photos = [business_01, business_02, business_03, business_04];
 
@@ -97,12 +96,32 @@ function Home() {
     });
   };
 
-  const [successModal, setSuccessModal] = useState(false);
+  const navigateToLoan = (selected_product) => {
+    navigate("/get-quote", {
+      state: {
+        product: selected_product,
+      },
+    });
+  };
+
+  // Review functions started from here
+  const [reviewIndex, setReviewIndex] = useState(3);
+  const review = client_review[reviewIndex];
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setReviewIndex((prev) =>
+        prev === client_review.length - 1 ? 0 : prev + 1
+      );
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [reviewIndex]);
+
+  // Review functions ends from here
 
   return (
     <div className={styles.parent_wrapper}>
       <Whatsapp />
-      {successModal && <Modal />}
       <NavBar
         companyName={"Prime Loaner"}
         bars={<HiOutlineBars4 />}
@@ -127,46 +146,20 @@ function Home() {
         <section className={styles.sec_00}>
           <h3>Welcome to Prime Loaner</h3>
           <p>
-            {/* We are dedicated to empowering the backbone of our economy – the
-            small business owners, motorcycle riders, car drivers, and rickshaw
-            riders. Our mission is to provide flexible, easy-to-access,
-            installment-based loans without the traditional barriers of banking.
-            We believe in your hustle and are here to provide the financial fuel
-            you need to thrive. */}
-            we believe every hustle deserves a boost. That’s why we provide
-            flexible, easy-to-access loans specifically designed for:
+            We are here to support hardworking people like motorcycle riders,
+            car drivers, and rickshaw operators. Our goal is to make it easy for
+            you to get flexible loans you can repay in small installments,
+            without the stress and delays of traditional banks.
           </p>
-          <ul>
-            <li>Small business owners</li>
-            <li>Motorcycle riders (okada riders)</li>
-            <li>Car drivers (taxi, Uber, Bolt, etc.)</li>
-            <li> Rickshaw (keke) riders</li>
-          </ul>
+          <p>
+            We see how hard you work, and we’re here to give you the financial
+            support you need to grow, succeed, and build a better future.
+          </p>
         </section>
 
         <main>
           <section className={styles.sec_02}>
             <h3>Loan Options We Offer</h3>
-
-            <article>
-              <img src={business} alt="" />
-              <div>
-                <strong>Business Loans</strong>
-                <p>
-                  Tailored loans for market traders and business owners to
-                  expand operations, purchase goods, or manage cash flow.
-                </p>
-              </div>
-
-              <aside>
-                <button>
-                  <GrPrevious />
-                </button>
-                <button>
-                  <GrNext />
-                </button>
-              </aside>
-            </article>
 
             <article>
               <img src={car_photos[carIndex]} alt="" />
@@ -187,6 +180,9 @@ function Home() {
                   <GrNext onClick={handle_car_next} />
                 </button>
               </aside>
+              <button onClick={() => navigateToLoan("car_loan")}>
+                Get Quote
+              </button>
             </article>
 
             <article>
@@ -208,6 +204,9 @@ function Home() {
                   <GrNext onClick={handle_rickshaw_next} />
                 </button>
               </aside>
+              <button onClick={() => navigateToLoan("rickshaw_loan")}>
+                Get Quote
+              </button>
             </article>
 
             <article>
@@ -229,6 +228,9 @@ function Home() {
                   <GrNext onClick={handle_bike_next} />
                 </button>
               </aside>
+              <button onClick={() => navigateToLoan("motorbike_loan")}>
+                Get Quote
+              </button>
             </article>
           </section>
 
@@ -322,14 +324,15 @@ function Home() {
 
           <section className={styles.sec_06}>
             <h3>What Our Clients Say</h3>
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                quasi error commodi modi sequi. Pariatur doloribus est excepturi
-                .
-              </p>
-              <b>Umar Abdulkareem</b>
+
+            <div key={review.id}>
+              <b>{review.name}</b>
+              <p>{review.review}</p>
             </div>
+
+            <aside>
+              <button>View All Reviews</button>
+            </aside>
           </section>
 
           <section className={styles.sec_07}>
@@ -353,8 +356,12 @@ function Home() {
               </div>
               {showAnswer === "question_01" && (
                 <span>
-                  Loan amount very depending on your business needs and
-                  eligibility. Contact us for a personalized assessment
+                  We do not provide cash loans. Instead, our loans come in the
+                  form of vehicles such as cars, rickshaws, and motorcycles. The
+                  value of what you receive depends on the type of vehicle you
+                  choose and its current market price. Once you select the loan
+                  type, we’ll assess your application and let you know what
+                  you're eligible for.
                 </span>
               )}
             </article>
@@ -377,8 +384,10 @@ function Home() {
               </div>
               {showAnswer === "question_02" && (
                 <span>
-                  Loan amount very depending on your business needs and
-                  eligibility. Contact us for a personalized assessment
+                  Repayment terms range from 6 months to 2 years, depending on
+                  the type of loan you receive and your preferred repayment
+                  plan. You can choose to repay within any interval between 6
+                  and 24 months, based on what works best for you.
                 </span>
               )}
             </article>
@@ -401,8 +410,9 @@ function Home() {
               </div>
               {showAnswer === "question_03" && (
                 <span>
-                  Loan amount very depending on your business needs and
-                  eligibility. Contact us for a personalized assessment
+                  Loan approval typically takes 24 to 48 hours after you submit
+                  all required documents and complete the application process.
+                  We work quickly to get you moving as soon as possible.
                 </span>
               )}
             </article>
@@ -411,9 +421,14 @@ function Home() {
           <section className={styles.sec_08}>
             <h3>About Us</h3>
             <p>
-              Prime Loaner is dedicated to providing financial solutions for
-              business owners, bike men, and drivers. We understand your unique
-              needs and are committed to helping you achieve your goals.
+              <p>
+                At Prime Loaner, we’re here to support motorcycle riders,
+                rickshaw operators, and car drivers with easy, flexible loan
+                options tailored to your needs. We understand the hard work you
+                put in every day to earn a living and keep things moving. That’s
+                why our goal is to remove the stress of traditional banking by
+                giving you fast access to the financial help you deserve.
+              </p>
             </p>
           </section>
 
@@ -431,10 +446,10 @@ function Home() {
             </div>
 
             <div>
-              <strong>Address:</strong>
-              <a href="Office:">
+              <address>
+                <strong>Office: </strong>
                 F/ab55 Iku Quarter's, Ikare-Akoko, Ondo State, Nigeria.
-              </a>
+              </address>
             </div>
           </section>
         </main>

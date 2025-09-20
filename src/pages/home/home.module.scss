@@ -14,6 +14,7 @@
         @include _text;
         color: map-get($colors, color_09);
         margin-top: map-get($marginTop, small);
+        line-height: 27px;
       }
       ul {
         margin-left: 20px;
@@ -58,15 +59,16 @@
           line-height: map-get($lineHeight, small);
         }
         button {
-          width: 120px;
+          width: 150px;
           margin-top: 15px;
           height: 35px;
           border-radius: 10px;
           border: none;
           color: map-get($colors, color_05);
           background-color: map-get($colors, color_01);
-          font-weight: map-get($fontWidth, xxx-large);
-          letter-spacing: 0.3px;
+          font-weight: map-get($fontWidth, xxx_large);
+          letter-spacing: 0.5px;
+          font-size: map-get($fontSize, xx_large);
           &:active {
             background-color: map-get($colors, color_02);
           }
@@ -105,15 +107,16 @@
           line-height: map-get($lineHeight, small);
         }
         button {
-          width: 120px;
+          width: 150px;
           margin-top: 15px;
           height: 35px;
           border-radius: 10px;
           border: none;
           color: map-get($colors, color_05);
           background-color: map-get($colors, color_01);
-          font-weight: map-get($fontWidth, xxx-large);
-          letter-spacing: 0.3px;
+          font-weight: map-get($fontWidth, xxx_large);
+          letter-spacing: 0.5px;
+          font-size: map-get($fontSize, xx_large);
           &:active {
             background-color: map-get($colors, color_02);
           }
@@ -134,6 +137,7 @@
           box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
           border-radius: 10px;
           position: relative;
+          padding-bottom: map-get($marginTop, large);
           img {
             width: 100%;
             height: 200px;
@@ -174,14 +178,32 @@
               }
               &:first-child {
                 position: absolute;
-                top: 48%;
+                top: 35%;
                 left: 2%;
               }
               &:last-child {
                 position: absolute;
-                top: 48%;
+                top: 35%;
                 right: 2%;
               }
+            }
+          }
+          button {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            height: 35px;
+            align-items: center;
+            justify-content: center;
+            background-color: map-get($colors, color_04);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            font-size: map-get($fontSize, xx_large);
+            font-weight: map-get($fontWidth, x_large);
+            &:active {
+              background-color: map-get($colors, color_09);
             }
           }
         }
@@ -253,12 +275,13 @@
         article {
           display: flex;
           gap: 10px;
-          margin-bottom: map-get($marginTop, medium);
+          margin-bottom: map-get($marginTop, large);
           div {
             display: flex;
             flex-direction: column;
             h4 {
               @include _subHeader;
+              font-size: map-get($fontSize, xx_large);
             }
             p {
               @include _text;
@@ -269,12 +292,16 @@
 
       .sec_06 {
         margin-top: map-get($marginTop, xx_large);
+        background-color: map-get($colors, color_05);
+        padding: 35px 15px;
+        border-radius: 10px;
         h3 {
           @include _header;
           text-align: center;
           margin-bottom: map-get($marginTop, medium);
         }
         div {
+          margin-top: map-get($marginTop, x_large);
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -282,6 +309,7 @@
           padding: 15px;
           border-radius: 15px;
           box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+          gap: 10px;
           p {
             @include _text;
             // text-align: center;
@@ -290,6 +318,26 @@
           b {
             @include _subHeader;
             margin-top: map-get($marginTop, medium);
+            text-align: left !important;
+            width: 100%;
+          }
+        }
+        aside {
+          margin-top: map-get($marginTop, large);
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          button {
+            width: 100%;
+            height: 35px;
+            border: none;
+            box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3),
+              0px 0px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 7px;
+            font-size: map-get($fontSize, x_large);
+            font-weight: map-get($fontWidth, large);
+            letter-spacing: 0.5px;
           }
         }
       } // .sec_06 ends here
@@ -313,6 +361,8 @@
             p {
               @include _text;
               margin-bottom: map-get($marginTop, small);
+              color: black;
+              font-weight: map-get($fontWidth, x_large);
             }
           }
           span {
@@ -361,6 +411,12 @@
             font-size: map-get($fontSize, x_large);
             display: flex;
             color: map-get($colors, color_03);
+          }
+          address {
+            color: map-get($colors, color_03);
+            font-family: inter;
+            font-size: map-get($fontSize, x_large);
+            line-height: 23px;
           }
         }
       } // .sec_09 ends here

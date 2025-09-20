@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   .wrapper {
-    padding:0px 15px;
+    padding: 0px 15px;
     .sec_01 {
       width: 100%;
       display: flex;
@@ -48,14 +48,21 @@
       gap: 5px;
       align-items: center;
       justify-content: center;
+
       p {
         color: map-get($colors, color_09);
         font-family: inter;
         font-weight: map-get($fontWidth, xxx-large);
+        font-size: map-get($fontSize, xxx_large);
+        display: flex;
+        align-items: center;
       }
       strong {
         font-family: roboto;
         letter-spacing: 0.3px;
+        display: flex;
+        align-items: center;
+        margin-top: 3px;
       }
     } // sec_03 scope ends here
 

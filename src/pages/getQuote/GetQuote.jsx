@@ -7,10 +7,16 @@ import car_01 from "../../assets/images/cars/car_01.png";
 import { FaRegCircle } from "react-icons/fa6";
 import back_icon from "../../assets/icons/back_icon.png";
 import Button from "../../components/button/Button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function GetQuote() {
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  const selected_product = location?.state?.product;
+
+  console.log(selected_product);
 
   return (
     <div className={styles.parent_wrapper}>
@@ -20,51 +26,85 @@ function GetQuote() {
           <h3>Choose Your Loan</h3>
         </header>
 
-        <section className={styles.sec_01}>
-          <article>
-            <img src={business_01} alt="" />
-            <div>
-              <strong>Business Loan</strong>
-              <p>Interest 35%</p>
-              <p>Price: ₦1,300,000</p>
-            </div>
-            {/* <FaRegCircleCheck className={styles.input} /> */}
-            <FaRegCircle className={styles.input} />
-          </article>
+        {selected_product ? (
+          <section className={styles.sec_01}>
+            {selected_product === "car_loan" && (
+              <article>
+                <img src={car_01} alt="" />
+                <div>
+                  <strong>Car Loan</strong>
+                  <p>Interest 35%</p>
+                  <p>Price: ₦1,300,000</p>
+                </div>
 
-          <article>
-            <img src={car_01} alt="" />
-            <div>
-              <strong>Business Loan</strong>
-              <p>Interest 35%</p>
-              <p>Price: ₦1,300,000</p>
-            </div>
-            {/* <FaRegCircleCheck className={styles.input} /> */}
-            <FaRegCircle className={styles.input} />
-          </article>
+                <FaRegCircle className={styles.input} />
+              </article>
+            )}
 
-          <article>
-            <img src={rickshaw_01} alt="" />
-            <div>
-              <strong>Business Loan</strong>
-              <p>Interest 35%</p>
-              <p>Price: ₦1,300,000</p>
-            </div>
-            {/* <FaRegCircleCheck className={styles.input} /> */}
-            <FaRegCircle className={styles.input} />
-          </article>
+            {selected_product === "rickshaw_loan" && (
+              <article>
+                <img src={rickshaw_01} alt="" />
+                <div>
+                  <strong>Rickshaw Loan</strong>
+                  <p>Interest 35%</p>
+                  <p>Price: ₦1,300,000</p>
+                </div>
 
-          <article>
-            <img src={bike_01} alt="" />
-            <div>
-              <strong>Business Loan</strong>
-              <p>Interest 35%</p>
-              <p>Price: ₦1,300,000</p>
-            </div>
-            {/* <FaRegCircleCheck className={styles.input} /> */}
-            <FaRegCircle className={styles.input} />
-          </article>
-        </section>
+                <FaRegCircle className={styles.input} />
+              </article>
+            )}
+
+            {selected_product === "motorbike_loan" && (
+              <article>
+                <img src={bike_01} alt="" />
+                <div>
+                  <strong>Motor-Bike Loan</strong>
+                  <p>Interest 35%</p>
+                  <p>Price: ₦1,300,000</p>
+                </div>
+
+                <FaRegCircle className={styles.input} />
+              </article>
+            )}
+          </section>
+        ) : (
+          <section className={styles.sec_01}>
+          
+            <article>
+              <img src={car_01} alt="" />
+              <div>
+                <strong>Car Loan</strong>
+                <p>Interest 35%</p>
+                <p>Price: ₦1,300,000</p>
+              </div>
+
+              <FaRegCircle className={styles.input} />
+            </article>
+
+            <article>
+              <img src={rickshaw_01} alt="" />
+              <div>
+                <strong>Rickshaw Loan</strong>
+                <p>Interest 35%</p>
+                <p>Price: ₦1,300,000</p>
+              </div>
+
+              <FaRegCircle className={styles.input} />
+            </article>
+
+            <article>
+              <img src={bike_01} alt="" />
+              <div>
+                <strong>Motor-Bike Loan</strong>
+                <p>Interest 35%</p>
+                <p>Price: ₦1,300,000</p>
+              </div>
+
+              <FaRegCircle className={styles.input} />
+            </article>
+          </section>
+        )}
+
         <hr />
         <section className={styles.sec_02}>
           <h3> Schedule Payment</h3>
@@ -122,8 +162,6 @@ function GetQuote() {
         <section className={styles.sec_03}>
           <Button children={"Next"} onClick={() => navigate("/loan-form")} />
         </section>
-
-       
       </div>
     </div>
   );

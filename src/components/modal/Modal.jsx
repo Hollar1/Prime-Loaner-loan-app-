@@ -20,7 +20,7 @@ function Modal() {
           </p>
         </section>
         <section className={styles.sec_03}>
-          <p>Reference Number:</p> <strong>REF-2024-07-15-12345</strong>
+          <p>Reference:</p> <strong>REF-2024-07-15-12345</strong>
         </section>
 
         <section className={styles.sec_04}>
