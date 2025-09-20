@@ -9,6 +9,7 @@ import TermsConditions from "./pages/termsConditions/TermsConditions";
 import ScrollToTop from "./utils/ScrollToTop";
 import HomePage from "./ADMIN/homepage/HomePage";
 import Applications from "./ADMIN/applications/Applications";
+import Overview from "../src/ADMIN/overview/Overview"
 
 import AllUsers from "../src/ADMIN/allUsers/AllUsers";
 import ApplicationDetails from "./ADMIN/applicationDetails/ApplicationDetails";
@@ -32,6 +33,7 @@ function App() {
         <Route path="/all-users" element={<AllUsers />} />
         <Route path="/loans" element={<Loans/>} />
         <Route path="/user-profile" element={<UserProfile/>} />
+        <Route path="/overview" element={<Overview/>} />
         <Route path="/application-details" element={<ApplicationDetails />} />
       </Routes>
     </Router>

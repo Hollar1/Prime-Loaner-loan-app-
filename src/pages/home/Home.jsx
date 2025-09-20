@@ -35,7 +35,6 @@ import car_03 from "../../assets/images/cars/car_03.png";
 import car_04 from "../../assets/images/cars/car_04.png";
 import { useNavigate } from "react-router-dom";
 
-
 const business_photos = [business_01, business_02, business_03, business_04];
 
 const car_photos = [car_01, car_02, car_03, car_04];
@@ -420,16 +419,15 @@ function Home() {
 
           <section className={styles.sec_08}>
             <h3>About Us</h3>
-           
-              <p>
-                At Prime Loaner, we’re here to support motorcycle riders,
-                rickshaw operators, and car drivers with easy, flexible loan
-                options tailored to your needs. We understand the hard work you
-                put in every day to earn a living and keep things moving. That’s
-                why our goal is to remove the stress of traditional banking by
-                giving you fast access to the financial help you deserve.
-              </p>
-       
+
+            <p>
+              At Prime Loaner, we’re here to support motorcycle riders, rickshaw
+              operators, and car drivers with easy, flexible loan options
+              tailored to your needs. We understand the hard work you put in
+              every day to earn a living and keep things moving. That’s why our
+              goal is to remove the stress of traditional banking by giving you
+              fast access to the financial help you deserve.
+            </p>
           </section>
 
           <section className={styles.sec_09} id="contactUs">

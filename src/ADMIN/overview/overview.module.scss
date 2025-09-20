@@ -1,0 +1,167 @@
+@import "../../../public/styles_prop.scss";
+.parent_wrapper {
+  .wrapper {
+    @include admin_wrapper_B;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+
+    .sec_01 {
+      h3 {
+        @include _subHeader;
+        margin-bottom: map-get($marginTop, small);
+        span {
+          color: map-get($colors, color_09);
+          font-size: map-get($fontSize, large);
+          letter-spacing: 0.3px;
+        }
+      }
+      &:nth-child(1) {
+        article {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          div {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: white;
+            margin-left: 20px;
+            margin-right: 20px;
+            p {
+              font-family: inter;
+              font-size: map-get($fontSize, x_large);
+              font-weight: map-get($fontWidth, large);
+              color: map-get($colors, color_09);
+            }
+            strong {
+              font-family: roboto;
+              font-size: map-get($fontSize, xx_large);
+              font-weight: map-get($fontWidth, x_large);
+              font-family: roboto;
+            }
+          }
+        }
+      } // &:nth-child(1)
+    } //   .sec_01 ends here
+
+    .sec_02 {
+      h3 {
+        @include _subHeader;
+        margin-bottom: map-get($marginTop, small);
+        span {
+          color: map-get($colors, color_09);
+          font-size: map-get($fontSize, large);
+          letter-spacing: 0.3px;
+        }
+      }
+      article {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        div {
+          display: flex;
+          flex-direction: column;
+          padding: 15px;
+          border-radius: 8px;
+          background-color: white;
+          margin-left: 20px;
+          margin-right: 20px;
+          p {
+            font-family: inter;
+            font-size: map-get($fontSize, x_large);
+            font-weight: map-get($fontWidth, large);
+            color: map-get($colors, color_09);
+          }
+          strong {
+            font-family: roboto;
+            font-size: map-get($fontSize, xx_large);
+            font-weight: map-get($fontWidth, x_large);
+            margin-top: map-get($marginTop, small);
+            font-family: roboto;
+          }
+        }
+      }
+    } // &:nth-child(2)
+
+    .sec_03 {
+      width: 100%;
+      h3 {
+        @include _subHeader;
+        margin-bottom: map-get($marginTop, small);
+        span {
+          color: map-get($colors, color_09);
+          font-size: map-get($fontSize, large);
+          letter-spacing: 0.3px;
+        }
+      }
+      article {
+        width: 100%;
+        display: flex;
+        div {
+          display: flex;
+          width: 100%;
+          flex-direction: column;
+          padding: 15px;
+          border-radius: 8px;
+          background-color: white;
+          margin-left: 20px;
+          margin-right: 20px;
+          p {
+            font-family: inter;
+            font-size: map-get($fontSize, x_large);
+            font-weight: map-get($fontWidth, large);
+            color: map-get($colors, color_09);
+          }
+          strong {
+            font-family: roboto;
+            font-size: map-get($fontSize, xx_large);
+            font-weight: map-get($fontWidth, x_large);
+            margin-top: map-get($marginTop, small);
+         
+          }
+        }
+      }
+    } // &:nth-child(3)
+
+    .sec_04 {
+      width: 100%;
+      h3 {
+        @include _subHeader;
+        margin-bottom: map-get($marginTop, small);
+        span {
+          color: map-get($colors, color_09);
+          font-size: map-get($fontSize, large);
+          letter-spacing: 0.3px;
+        }
+      }
+      article {
+        width: 100%;
+        display: flex;
+        div {
+          display: flex;
+          width: 100%;
+          flex-direction: column;
+          padding: 15px;
+          border-radius: 8px;
+          background-color: white;
+          margin-left: 20px;
+          margin-right: 20px;
+          p {
+            font-family: inter;
+            font-size: map-get($fontSize, x_large);
+            font-weight: map-get($fontWidth, large);
+            color: map-get($colors, color_09);
+          }
+          strong {
+            margin-top: map-get($marginTop, small);
+            font-size: map-get($fontSize, xxx_large);
+            font-family: inter;
+          }
+        }
+      }
+    } //  .sec_04
+
+    &:nth-child(5) {
+    } // &:nth-child(5)
+  } // Wrapper scope ends here
+} // Parent_wrapper ends here

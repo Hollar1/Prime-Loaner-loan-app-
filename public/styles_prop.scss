@@ -91,6 +91,7 @@ $marginTop: (
   padding: 0px 15px;
   margin-top: 45px !important;
   padding-top: 25px;
+  background-color: map-get($colors, admin_background_color );
 }
 
 @mixin _header {

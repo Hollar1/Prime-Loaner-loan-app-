@@ -5,9 +5,11 @@ import rickshaw_01 from "../../assets/images/rickshaw/rickshaw_01.png";
 import business_01 from "../../assets/images/business/business_01.png";
 import car_01 from "../../assets/images/cars/car_01.png";
 import { FaRegCircle } from "react-icons/fa6";
+import { FaRegCheckCircle } from "react-icons/fa";
 import back_icon from "../../assets/icons/back_icon.png";
 import Button from "../../components/button/Button";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function GetQuote() {
   const navigate = useNavigate();
@@ -16,7 +18,27 @@ function GetQuote() {
 
   const selected_product = location?.state?.product;
 
-  console.log(selected_product);
+  const [loanInfo, setLoanInfo] = useState({
+    chosenProduct: selected_product ? selected_product : "",
+    paymentTerm: "",
+    paymentPlan: "",
+  });
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setLoanInfo((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // function to clear localStorage started here
+  const handleSaveToLocalStorage = () => {
+    // include timestamp when saving
+    localStorage.setItem("loanInfo", JSON.stringify(loanInfo));
+    navigate("/loan-form");
+  };
+  // function to clear localStorage ends here
 
   return (
     <div className={styles.parent_wrapper}>
@@ -33,11 +55,14 @@ function GetQuote() {
                 <img src={car_01} alt="" />
                 <div>
                   <strong>Car Loan</strong>
-                  <p>Interest 35%</p>
                   <p>Price: ₦1,300,000</p>
                 </div>
 
-                <FaRegCircle className={styles.input} />
+                {selected_product === "car_loan" ? (
+                  <FaRegCheckCircle className={styles.input} />
+                ) : (
+                  <FaRegCircle className={styles.input} />
+                )}
               </article>
             )}
 
@@ -46,11 +71,13 @@ function GetQuote() {
                 <img src={rickshaw_01} alt="" />
                 <div>
                   <strong>Rickshaw Loan</strong>
-                  <p>Interest 35%</p>
                   <p>Price: ₦1,300,000</p>
                 </div>
-
-                <FaRegCircle className={styles.input} />
+                {selected_product === "rickshaw_loan" ? (
+                  <FaRegCheckCircle className={styles.input} />
+                ) : (
+                  <FaRegCircle className={styles.input} />
+                )}
               </article>
             )}
 
@@ -59,48 +86,79 @@ function GetQuote() {
                 <img src={bike_01} alt="" />
                 <div>
                   <strong>Motor-Bike Loan</strong>
-                  <p>Interest 35%</p>
                   <p>Price: ₦1,300,000</p>
                 </div>
-
-                <FaRegCircle className={styles.input} />
+                {selected_product === "motorbike_loan" ? (
+                  <FaRegCheckCircle className={styles.input} />
+                ) : (
+                  <FaRegCircle className={styles.input} />
+                )}
               </article>
             )}
           </section>
         ) : (
           <section className={styles.sec_01}>
-          
-            <article>
+            <article
+              onClick={() =>
+                setLoanInfo({
+                  ...loanInfo,
+                  chosenProduct: "car_loan",
+                })
+              }
+            >
               <img src={car_01} alt="" />
               <div>
                 <strong>Car Loan</strong>
-                <p>Interest 35%</p>
+
                 <p>Price: ₦1,300,000</p>
               </div>
 
-              <FaRegCircle className={styles.input} />
+              {loanInfo.chosenProduct === "car_loan" ? (
+                <FaRegCheckCircle className={styles.input} />
+              ) : (
+                <FaRegCircle className={styles.input} />
+              )}
             </article>
 
-            <article>
+            <article
+              onClick={() =>
+                setLoanInfo({
+                  ...loanInfo,
+                  chosenProduct: "rickshaw",
+                })
+              }
+            >
               <img src={rickshaw_01} alt="" />
               <div>
                 <strong>Rickshaw Loan</strong>
-                <p>Interest 35%</p>
                 <p>Price: ₦1,300,000</p>
               </div>
 
-              <FaRegCircle className={styles.input} />
+              {loanInfo.chosenProduct === "rickshaw" ? (
+                <FaRegCheckCircle className={styles.input} />
+              ) : (
+                <FaRegCircle className={styles.input} />
+              )}
             </article>
 
-            <article>
+            <article
+              onClick={() =>
+                setLoanInfo({
+                  ...loanInfo,
+                  chosenProduct: "motor_bike",
+                })
+              }
+            >
               <img src={bike_01} alt="" />
               <div>
                 <strong>Motor-Bike Loan</strong>
-                <p>Interest 35%</p>
                 <p>Price: ₦1,300,000</p>
               </div>
-
-              <FaRegCircle className={styles.input} />
+              {loanInfo.chosenProduct === "motor_bike" ? (
+                <FaRegCheckCircle className={styles.input} />
+              ) : (
+                <FaRegCircle className={styles.input} />
+              )}
             </article>
           </section>
         )}
@@ -112,25 +170,34 @@ function GetQuote() {
           <article>
             <label htmlFor="">
               Payment Term
-              <select name="" id="">
+              <select
+                value={loanInfo.paymentTerm}
+                name="paymentTerm"
+                onChange={handleOnChange}
+              >
                 <option value="">--Select--</option>
-                <option value="">6 Months</option>
-                <option value="">9 Months</option>
-                <option value="">12 Months</option>
-                <option value="">15 Months</option>
-                <option value="">18 Months</option>
-                <option value="">21 Months</option>
-                <option value="">24 Months</option>
+                <option value="6 months">6 Months</option>
+                <option value="9 months">9 Months</option>
+                <option value="12 months">12 Months</option>
+                <option value="15 months">15 Months</option>
+                <option value="18 months">18 Months</option>
+                <option value="21 months">21 Months</option>
+                <option value="24 months">24 Months</option>
               </select>
             </label>
 
             <label htmlFor="">
               Payment Plan
-              <select name="" id="">
+              <select
+                value={loanInfo.paymentPlan}
+                name="paymentPlan"
+                onChange={handleOnChange}
+              >
                 <option value="">--Select--</option>
-                <option value="">Daily</option>
-                <option value="">Weekly</option>
-                <option value="">Monthly</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="2 weeks">2 Weeks</option>
+                <option value="monthly">Monthly</option>
               </select>
             </label>
           </article>
@@ -160,7 +227,7 @@ function GetQuote() {
         </section>
 
         <section className={styles.sec_03}>
-          <Button children={"Next"} onClick={() => navigate("/loan-form")} />
+          <Button children={"Next"} onClick={handleSaveToLocalStorage} />
         </section>
       </div>
     </div>

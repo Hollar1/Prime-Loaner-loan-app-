@@ -1,13 +1,11 @@
 import styles from "../sideBar/sideBar.module.scss";
 import { HiOutlineBuildingLibrary } from "react-icons/hi2";
-import { CgMenuGridR } from "react-icons/cg";
 import { SiGoogleforms } from "react-icons/si";
 import { FaNairaSign } from "react-icons/fa6";
 import { MdPreview, MdOutlineTextsms } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa";
 
 import {
-  TbCurrencyNaira,
   TbUsersGroup,
   TbSettings,
   TbLogout2,
@@ -23,7 +21,7 @@ function SideBar() {
   return (
     <div className={styles.parent_wrapper}>
       <div className={styles.wrapper}>
-        <header>
+        <header onClick={()=>navigate("/")}>
           <HiOutlineBuildingLibrary fontSize={28} color="#1173d4" />
           <h3>Prime Loner</h3>
         </header>
