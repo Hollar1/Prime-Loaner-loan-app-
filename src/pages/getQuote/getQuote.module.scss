@@ -59,6 +59,74 @@
       margin-top: map-get($marginTop, large);
       display: flex;
       flex-direction: column;
+
+      h3 {
+        @include _subHeader;
+        margin-bottom: map-get($marginTop, medium);
+      }
+
+      main {
+        display: flex;
+        gap: 30px;
+      }
+
+      article {
+        height: 40px;
+        display: flex;
+        width: 100%;
+        gap: 2px;
+        font-family: inter;
+        flex-direction: column;
+        span {
+          font-family: inter;
+          font-size: map-get($fontSize, x_large);
+          font-weight: map-get($fontWidth, medium);
+          color: map-get($colors, color_09);
+        }
+        label {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 7px;
+            border: solid 2px map-get($colors, color_07);
+            font-size: map-get($fontSize, large);
+            height: 30px;
+          }
+          aside {
+            display: flex;
+            flex-direction: column;
+            border: solid 1px map-get($colors, color_04);
+            position: relative;
+            z-index: 10;
+            width: 98%;
+            margin-left: auto;
+            margin-right: auto;
+            button {
+              background-color: map-get($colors, color_07);
+              padding: 5px;
+              border-radius: 0px;
+              border-top: 0px;
+              border-left: 0px;
+              border-right: 0px;
+              font-size: map-get($fontSize, large);
+              font-weight: map-get($fontWidth, medium);
+              border-bottom: solid 0.3px map-get($colors, color_09);
+            }
+          }
+        }
+      }
+
+      hr {
+        margin: 15px 0px;
+      }
+    }
+
+    .sec_03 {
+      margin-top: -2px !important;
       h3 {
         @include _subHeader;
         margin-bottom: map-get($marginTop, medium);
@@ -66,37 +134,7 @@
       article {
         display: flex;
         flex-direction: column;
-        gap: 15px;
-        label {
-          display: flex;
-          gap: 10px;
-          align-items: center;
-          font-family: inter;
-          color: map-get($colors, color_09);
-          font-size: map-get($fontSize, large);
-          select {
-            width: 55%;
-            height: 35px;
-            font-size: map-get($fontSize, x_large);
-            padding: 0px 10px;
-          }
-        }
-      }
-      hr {
-        margin: 15px 0px;
-      }
-    }
-
-    .sec_03 {
-      padding-top: map-get($marginTop, small);
-      h3 {
-        @include _subHeader;
-        margin-bottom: map-get($marginTop,medium);
-      }
-      article {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
+        gap: 2px;
         div {
           display: flex;
           justify-content: space-between;
@@ -126,8 +164,8 @@
       }
     } // .sec_02 ends here
 
-    .sec_03 {
-      margin-top: map-get($marginTop, medium);
+    .sec_04 {
+      margin-top: map-get($marginTop, large) !important;
     } // .sec_03 ends here
   } // Wrapper scope ends here
 } // Parent_wrapper scope ends

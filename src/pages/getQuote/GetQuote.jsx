@@ -2,7 +2,6 @@ import styles from "../getQuote/getQuote.module.scss";
 import NavBar from "../../components/navBar/NavBar";
 import bike_01 from "../../assets/images/bikes/bike_01.png";
 import rickshaw_01 from "../../assets/images/rickshaw/rickshaw_01.png";
-import business_01 from "../../assets/images/business/business_01.png";
 import car_01 from "../../assets/images/cars/car_01.png";
 import { FaRegCircle } from "react-icons/fa6";
 import { FaRegCheckCircle } from "react-icons/fa";
@@ -10,6 +9,7 @@ import back_icon from "../../assets/icons/back_icon.png";
 import Button from "../../components/button/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { FaChevronDown } from "react-icons/fa";
 
 function GetQuote() {
   const navigate = useNavigate();
@@ -18,27 +18,85 @@ function GetQuote() {
 
   const selected_product = location?.state?.product;
 
+  // const [loanInterest, setLoanInterest] = useState("");
+
+  const [showPaymentTerm, setShowPaymentTerm] = useState(false);
+  const [showPaymentPlan, setShowPaymentPlan] = useState(false);
+
+  const handleShowPaymentTerm = () => {
+    setShowPaymentPlan(false);
+    setShowPaymentTerm(!showPaymentTerm);
+  };
+  const handleShowPaymentPlan = () => {
+    setShowPaymentTerm(false);
+    setShowPaymentPlan(!showPaymentPlan);
+  };
+
   const [loanInfo, setLoanInfo] = useState({
     chosenProduct: selected_product ? selected_product : "",
     paymentTerm: "",
     paymentPlan: "",
+    sub_payment: "",
+    interest: "",
+    totalToPay: "",
   });
 
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
-    setLoanInfo((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  useEffect(() => {
+    if (loanInfo.paymentPlan) {
+      setShowPaymentPlan(false);
+    }
+  }, [loanInfo.paymentPlan]);
+
+  useEffect(() => {
+    if (loanInfo.paymentTerm || loanInfo.interest) {
+      setShowPaymentTerm(false);
+    }
+  }, [loanInfo.paymentTerm, loanInfo.interest]);
 
   // function to clear localStorage started here
   const handleSaveToLocalStorage = () => {
-    // include timestamp when saving
-    localStorage.setItem("loanInfo", JSON.stringify(loanInfo));
-    navigate("/loan-form");
+    if (
+      !loanInfo.chosenProduct ||
+      !loanInfo.paymentTerm ||
+      !loanInfo.paymentPlan ||
+      !loanInfo.sub_payment ||
+      !loanInfo.interest
+    ) {
+      alert("all fields required!");
+    } else {
+      localStorage.setItem("loanInfo", JSON.stringify(loanInfo));
+      navigate("/loan-form");
+    }
   };
   // function to clear localStorage ends here
+
+  const price = 500000; // If for i.e Market price is
+
+  let interestAmount = (35 * price) / 100; // if for i.e we are taking interest of 35%
+
+  const TotalInterest = {
+    _06months: interestAmount,
+    _09months: 50000 * 3 + interestAmount,
+    _12months: 50000 * 6 + interestAmount,
+    _15months: 50000 * 9 + interestAmount,
+    _18months: 50000 * 12 + interestAmount,
+    _21months: 50000 * 15 + interestAmount,
+    _24months: 50000 * 18 + interestAmount,
+  };
+
+  const TotalLoan = {
+    _06months: price + interestAmount,
+    _09months: 50000 * 3 + interestAmount + price,
+    _12months: 50000 * 6 + interestAmount + price,
+    _15months: 50000 * 9 + interestAmount + price,
+    _18months: 50000 * 12 + interestAmount + price,
+    _21months: 50000 * 15 + interestAmount + price,
+    _24months: 50000 * 18 + interestAmount + price,
+  };
+
+  const dailyPayment = loanInfo.totalToPay / 30;
+  const monthlyPayment = loanInfo.totalToPay / 6;
+  const weeklyPayment = monthlyPayment / 4;
 
   return (
     <div className={styles.parent_wrapper}>
@@ -167,41 +225,159 @@ function GetQuote() {
         <section className={styles.sec_02}>
           <h3> Schedule Payment</h3>
 
-          <article>
-            <label htmlFor="">
-              Payment Term
-              <select
-                value={loanInfo.paymentTerm}
-                name="paymentTerm"
-                onChange={handleOnChange}
-              >
-                <option value="">--Select--</option>
-                <option value="6 months">6 Months</option>
-                <option value="9 months">9 Months</option>
-                <option value="12 months">12 Months</option>
-                <option value="15 months">15 Months</option>
-                <option value="18 months">18 Months</option>
-                <option value="21 months">21 Months</option>
-                <option value="24 months">24 Months</option>
-              </select>
-            </label>
+          <main>
+            <article>
+              <span>Payment Term</span>
+              <label htmlFor="">
+                <div onClick={handleShowPaymentTerm}>
+                  {loanInfo.paymentTerm ? loanInfo.paymentTerm : "--Select--"}{" "}
+                  <FaChevronDown />
+                </div>
+                {showPaymentTerm && (
+                  <aside>
+                    <button
+                      onClick={() =>
+                        setLoanInfo({
+                          ...loanInfo,
+                          interest: TotalInterest._06months,
+                          paymentTerm: "6 months",
+                          totalToPay: TotalLoan._06months,
+                        })
+                      }
+                    >
+                      6 Months
+                    </button>
 
-            <label htmlFor="">
-              Payment Plan
-              <select
-                value={loanInfo.paymentPlan}
-                name="paymentPlan"
-                onChange={handleOnChange}
-              >
-                <option value="">--Select--</option>
-                <option value="daily">Daily</option>
-                <option value="weekly">Weekly</option>
-                <option value="2 weeks">2 Weeks</option>
-                <option value="monthly">Monthly</option>
-              </select>
-            </label>
-          </article>
-          <hr />
+                    <button
+                      onClick={() =>
+                        setLoanInfo({
+                          ...loanInfo,
+                          interest: TotalInterest._09months,
+                          paymentTerm: "9 months",
+                          totalToPay: TotalLoan._09months,
+                        })
+                      }
+                    >
+                      9 Months
+                    </button>
+                    <button
+                      onClick={() =>
+                        setLoanInfo({
+                          ...loanInfo,
+                          interest: TotalInterest._12months,
+                          paymentTerm: "12 months",
+                          totalToPay: TotalLoan._12months,
+                        })
+                      }
+                    >
+                      12 Months
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        setLoanInfo({
+                          ...loanInfo,
+                          interest: TotalInterest._15months,
+                          paymentTerm: "15 months",
+                          totalToPay: TotalLoan._15months,
+                        })
+                      }
+                    >
+                      15 Months
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        setLoanInfo({
+                          ...loanInfo,
+                          interest: TotalInterest._18months,
+                          paymentTerm: "18 months",
+                          totalToPay: TotalLoan._18months,
+                        })
+                      }
+                    >
+                      18 Months
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        setLoanInfo({
+                          ...loanInfo,
+                          interest: TotalInterest._21months,
+                          paymentTerm: "21 months",
+                          totalToPay: TotalLoan._21months,
+                        })
+                      }
+                    >
+                      21 Months
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        setLoanInfo({
+                          ...loanInfo,
+                          interest: TotalInterest._24months,
+                          paymentTerm: "24 months",
+                          totalToPay: TotalLoan._24months,
+                        })
+                      }
+                    >
+                      24 Months
+                    </button>
+                  </aside>
+                )}
+              </label>
+            </article>
+
+            <article>
+              <span>Payment Plan</span>
+              <label htmlFor="">
+                <div onClick={handleShowPaymentPlan}>
+                  {loanInfo.paymentPlan ? loanInfo.paymentPlan : "--Select--"}{" "}
+                  <FaChevronDown />
+                </div>
+                {showPaymentPlan && (
+                  <aside>
+                    <button
+                      onClick={() => {
+                        setLoanInfo({
+                          ...loanInfo,
+                          paymentPlan: "Daily",
+                          sub_payment: dailyPayment,
+                        });
+                      }}
+                    >
+                      Daily
+                    </button>
+                    <button
+                      onClick={() => {
+                        setLoanInfo({
+                          ...loanInfo,
+                          paymentPlan: "Weekly",
+                          sub_payment: weeklyPayment,
+                        });
+                      }}
+                    >
+                      Weekly
+                    </button>
+                    <button
+                      onClick={() => {
+                        setLoanInfo({
+                          ...loanInfo,
+                          paymentPlan: "Monthly",
+                          sub_payment: monthlyPayment,
+                        });
+                      }}
+                    >
+                      Monthly
+                    </button>
+                  </aside>
+                )}
+              </label>
+            </article>
+          </main>
+
+          <hr style={{ marginTop: 30 }} />
         </section>
 
         <section className={styles.sec_03}>
@@ -209,24 +385,38 @@ function GetQuote() {
           <article>
             <div>
               <p>Loan Amount</p>
-              <span>₦1,300,000</span>
+              <span>₦{price.toLocaleString()}</span>
             </div>
             <div>
               <p>Loan Term</p>
-              <span>6 Months</span>
+              <span>{loanInfo.paymentTerm ? loanInfo.paymentTerm : "N/A"}</span>
             </div>
             <div>
-              <p>Monthly Payment</p>
-              <strong>₦75,000</strong>
+              <p>Interest %</p>
+              <strong>₦{loanInfo.interest ? loanInfo.interest : "0.00"}</strong>
+            </div>{" "}
+            <div>
+              <p>{loanInfo.paymentPlan} Payment</p>
+              <strong>
+                ₦
+                {loanInfo.sub_payment
+                  ? loanInfo.sub_payment.toLocaleString()
+                  : "0.00"}
+              </strong>
             </div>{" "}
             <div>
               <p>Total Payment</p>
-              <strong>₦1,755,000</strong>
+              <strong>
+                ₦
+                {loanInfo.totalToPay
+                  ? loanInfo.totalToPay.toLocaleString()
+                  : "0.00"}
+              </strong>
             </div>
           </article>
         </section>
 
-        <section className={styles.sec_03}>
+        <section className={styles.sec_04}>
           <Button children={"Next"} onClick={handleSaveToLocalStorage} />
         </section>
       </div>
