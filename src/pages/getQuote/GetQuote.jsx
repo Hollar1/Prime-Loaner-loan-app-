@@ -13,27 +13,20 @@ import { FaChevronDown } from "react-icons/fa";
 
 function GetQuote() {
   const navigate = useNavigate();
-
   const location = useLocation();
-
   const selected_product = location?.state?.product;
 
-  // const [loanInterest, setLoanInterest] = useState("");
+  const productPrices = {
+    car_loan: 9500000,
+    rickshaw_loan: 4900000,
+    motorbike_loan: 1400000,
+  };
 
   const [showPaymentTerm, setShowPaymentTerm] = useState(false);
   const [showPaymentPlan, setShowPaymentPlan] = useState(false);
 
-  const handleShowPaymentTerm = () => {
-    setShowPaymentPlan(false);
-    setShowPaymentTerm(!showPaymentTerm);
-  };
-  const handleShowPaymentPlan = () => {
-    setShowPaymentTerm(false);
-    setShowPaymentPlan(!showPaymentPlan);
-  };
-
   const [loanInfo, setLoanInfo] = useState({
-    chosenProduct: selected_product ? selected_product : "",
+    chosenProduct: selected_product || "",
     paymentTerm: "",
     paymentPlan: "",
     sub_payment: "",
@@ -41,289 +34,153 @@ function GetQuote() {
     totalToPay: "",
   });
 
-  useEffect(() => {
-    if (loanInfo.paymentPlan) {
-      setShowPaymentPlan(false);
-    }
-  }, [loanInfo.paymentPlan]);
+  const handleShowPaymentTerm = () => {
+    setShowPaymentPlan(false);
+    setShowPaymentTerm(!showPaymentTerm);
+  };
 
-  useEffect(() => {
-    if (loanInfo.paymentTerm || loanInfo.interest) {
-      setShowPaymentTerm(false);
-    }
-  }, [loanInfo.paymentTerm, loanInfo.interest]);
+  const handleShowPaymentPlan = () => {
+    setShowPaymentTerm(false);
+    setShowPaymentPlan(!showPaymentPlan);
+  };
 
-  // function to clear localStorage started here
+
+
+
+
+
   const handleSaveToLocalStorage = () => {
+    const { chosenProduct, paymentTerm, paymentPlan, sub_payment, interest } =
+      loanInfo;
     if (
-      !loanInfo.chosenProduct ||
-      !loanInfo.paymentTerm ||
-      !loanInfo.paymentPlan ||
-      !loanInfo.sub_payment ||
-      !loanInfo.interest
+      !chosenProduct ||
+      !paymentTerm ||
+      !paymentPlan ||
+      !sub_payment ||
+      !interest
     ) {
-      alert("all fields required!");
+      alert("All fields are required!");
     } else {
       localStorage.setItem("loanInfo", JSON.stringify(loanInfo));
       navigate("/loan-form");
     }
   };
-  // function to clear localStorage ends here
 
-  const price = 500000; // If for i.e Market price is
+  const getLoanCalculations = (termMonths, price) => {
+    const flatInterest = (35 / 100) * price;
 
-  let interestAmount = (35 * price) / 100; // if for i.e we are taking interest of 35%
+    let totalInterest = flatInterest;
+    if (termMonths > 6) {
+      const monthlyFee = 50000 / 3;
+      const totalFee = monthlyFee * termMonths;
+      totalInterest += totalFee;
+    }
 
-  const TotalInterest = {
-    _06months: interestAmount,
-    _09months: 50000 * 3 + interestAmount,
-    _12months: 50000 * 6 + interestAmount,
-    _15months: 50000 * 9 + interestAmount,
-    _18months: 50000 * 12 + interestAmount,
-    _21months: 50000 * 15 + interestAmount,
-    _24months: 50000 * 18 + interestAmount,
+    const totalLoan = price + totalInterest;
+
+    return {
+      interest: totalInterest,
+      totalToPay: totalLoan,
+      monthlyPayment: totalLoan / termMonths,
+      weeklyPayment: totalLoan / (termMonths * 4),
+      dailyPayment: totalLoan / (termMonths * 30),
+    };
   };
 
-  const TotalLoan = {
-    _06months: price + interestAmount,
-    _09months: 50000 * 3 + interestAmount + price,
-    _12months: 50000 * 6 + interestAmount + price,
-    _15months: 50000 * 9 + interestAmount + price,
-    _18months: 50000 * 12 + interestAmount + price,
-    _21months: 50000 * 15 + interestAmount + price,
-    _24months: 50000 * 18 + interestAmount + price,
-  };
+  // Dynamic product price
+  const price = productPrices[loanInfo.chosenProduct] || 0;
 
-  const dailyPayment = loanInfo.totalToPay / 30;
-  const monthlyPayment = loanInfo.totalToPay / 6;
-  const weeklyPayment = monthlyPayment / 4;
+  // Calculate payments based on selected term
+  const termMonths = parseInt(loanInfo.paymentTerm?.split(" ")[0]) || 0;
+  const { dailyPayment, weeklyPayment, monthlyPayment } =
+    termMonths && price ? getLoanCalculations(termMonths, price) : {};
 
   return (
     <div className={styles.parent_wrapper}>
       <NavBar logo={""} pageHeader={"Select Loan Type"} goBack={back_icon} />
+
       <div className={styles.wrapper}>
         <header>
           <h3>Choose Your Loan</h3>
         </header>
 
-        {selected_product ? (
-          <section className={styles.sec_01}>
-            {selected_product === "car_loan" && (
-              <article>
-                <img src={car_01} alt="" />
-                <div>
-                  <strong>Car Loan</strong>
-                  <p>Price: ₦1,300,000</p>
-                </div>
-
-                {selected_product === "car_loan" ? (
-                  <FaRegCheckCircle className={styles.input} />
-                ) : (
-                  <FaRegCircle className={styles.input} />
-                )}
-              </article>
-            )}
-
-            {selected_product === "rickshaw_loan" && (
-              <article>
-                <img src={rickshaw_01} alt="" />
-                <div>
-                  <strong>Rickshaw Loan</strong>
-                  <p>Price: ₦1,300,000</p>
-                </div>
-                {selected_product === "rickshaw_loan" ? (
-                  <FaRegCheckCircle className={styles.input} />
-                ) : (
-                  <FaRegCircle className={styles.input} />
-                )}
-              </article>
-            )}
-
-            {selected_product === "motorbike_loan" && (
-              <article>
-                <img src={bike_01} alt="" />
-                <div>
-                  <strong>Motor-Bike Loan</strong>
-                  <p>Price: ₦1,300,000</p>
-                </div>
-                {selected_product === "motorbike_loan" ? (
-                  <FaRegCheckCircle className={styles.input} />
-                ) : (
-                  <FaRegCircle className={styles.input} />
-                )}
-              </article>
-            )}
-          </section>
-        ) : (
-          <section className={styles.sec_01}>
+        <section className={styles.sec_01}>
+          {["car_loan", "rickshaw_loan", "motorbike_loan"].map((productKey) => (
             <article
+              key={productKey}
               onClick={() =>
                 setLoanInfo({
                   ...loanInfo,
-                  chosenProduct: "car_loan",
+                  chosenProduct: productKey,
                 })
               }
             >
-              <img src={car_01} alt="" />
+              <img
+                src={
+                  productKey === "car_loan"
+                    ? car_01
+                    : productKey === "rickshaw_loan"
+                    ? rickshaw_01
+                    : bike_01
+                }
+                alt=""
+              />
               <div>
-                <strong>Car Loan</strong>
-
-                <p>Price: ₦1,300,000</p>
+                <strong>
+                  {productKey === "car_loan"
+                    ? "Car Loan"
+                    : productKey === "rickshaw_loan"
+                    ? "Rickshaw Loan"
+                    : "Motor-Bike Loan"}
+                </strong>
+                <p>Price: ₦{productPrices[productKey].toLocaleString()}</p>
               </div>
-
-              {loanInfo.chosenProduct === "car_loan" ? (
+              {loanInfo.chosenProduct === productKey ? (
                 <FaRegCheckCircle className={styles.input} />
               ) : (
                 <FaRegCircle className={styles.input} />
               )}
             </article>
-
-            <article
-              onClick={() =>
-                setLoanInfo({
-                  ...loanInfo,
-                  chosenProduct: "rickshaw",
-                })
-              }
-            >
-              <img src={rickshaw_01} alt="" />
-              <div>
-                <strong>Rickshaw Loan</strong>
-                <p>Price: ₦1,300,000</p>
-              </div>
-
-              {loanInfo.chosenProduct === "rickshaw" ? (
-                <FaRegCheckCircle className={styles.input} />
-              ) : (
-                <FaRegCircle className={styles.input} />
-              )}
-            </article>
-
-            <article
-              onClick={() =>
-                setLoanInfo({
-                  ...loanInfo,
-                  chosenProduct: "motor_bike",
-                })
-              }
-            >
-              <img src={bike_01} alt="" />
-              <div>
-                <strong>Motor-Bike Loan</strong>
-                <p>Price: ₦1,300,000</p>
-              </div>
-              {loanInfo.chosenProduct === "motor_bike" ? (
-                <FaRegCheckCircle className={styles.input} />
-              ) : (
-                <FaRegCircle className={styles.input} />
-              )}
-            </article>
-          </section>
-        )}
+          ))}
+        </section>
 
         <hr />
+
         <section className={styles.sec_02}>
-          <h3> Schedule Payment</h3>
+          <h3>Schedule Payment</h3>
 
           <main>
             <article>
               <span>Payment Term</span>
-              <label htmlFor="">
+              <label>
                 <div onClick={handleShowPaymentTerm}>
-                  {loanInfo.paymentTerm ? loanInfo.paymentTerm : "--Select--"}{" "}
-                  <FaChevronDown />
+                  {loanInfo.paymentTerm || "--Select--"} <FaChevronDown />
                 </div>
                 {showPaymentTerm && (
                   <aside>
-                    <button
-                      onClick={() =>
-                        setLoanInfo({
-                          ...loanInfo,
-                          interest: TotalInterest._06months,
-                          paymentTerm: "6 months",
-                          totalToPay: TotalLoan._06months,
-                        })
-                      }
-                    >
-                      6 Months
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        setLoanInfo({
-                          ...loanInfo,
-                          interest: TotalInterest._09months,
-                          paymentTerm: "9 months",
-                          totalToPay: TotalLoan._09months,
-                        })
-                      }
-                    >
-                      9 Months
-                    </button>
-                    <button
-                      onClick={() =>
-                        setLoanInfo({
-                          ...loanInfo,
-                          interest: TotalInterest._12months,
-                          paymentTerm: "12 months",
-                          totalToPay: TotalLoan._12months,
-                        })
-                      }
-                    >
-                      12 Months
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        setLoanInfo({
-                          ...loanInfo,
-                          interest: TotalInterest._15months,
-                          paymentTerm: "15 months",
-                          totalToPay: TotalLoan._15months,
-                        })
-                      }
-                    >
-                      15 Months
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        setLoanInfo({
-                          ...loanInfo,
-                          interest: TotalInterest._18months,
-                          paymentTerm: "18 months",
-                          totalToPay: TotalLoan._18months,
-                        })
-                      }
-                    >
-                      18 Months
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        setLoanInfo({
-                          ...loanInfo,
-                          interest: TotalInterest._21months,
-                          paymentTerm: "21 months",
-                          totalToPay: TotalLoan._21months,
-                        })
-                      }
-                    >
-                      21 Months
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        setLoanInfo({
-                          ...loanInfo,
-                          interest: TotalInterest._24months,
-                          paymentTerm: "24 months",
-                          totalToPay: TotalLoan._24months,
-                        })
-                      }
-                    >
-                      24 Months
-                    </button>
+                    {[6, 9, 12, 15, 18, 21, 24].map((months) => {
+                      const { interest, totalToPay } = getLoanCalculations(
+                        months,
+                        price
+                      );
+                      return (
+                        <button
+                          key={months}
+                          onClick={() =>
+                            setLoanInfo({
+                              ...loanInfo,
+                              interest,
+                              totalToPay,
+                              paymentTerm: `${months} months`,
+                              sub_payment: "", // reset payment
+                              paymentPlan: "",
+                            })
+                          }
+                        >
+                          {months} Months
+                        </button>
+                      );
+                    })}
                   </aside>
                 )}
               </label>
@@ -331,43 +188,42 @@ function GetQuote() {
 
             <article>
               <span>Payment Plan</span>
-              <label htmlFor="">
+              <label>
                 <div onClick={handleShowPaymentPlan}>
-                  {loanInfo.paymentPlan ? loanInfo.paymentPlan : "--Select--"}{" "}
-                  <FaChevronDown />
+                  {loanInfo.paymentPlan || "--Select--"} <FaChevronDown />
                 </div>
                 {showPaymentPlan && (
                   <aside>
                     <button
-                      onClick={() => {
+                      onClick={() =>
                         setLoanInfo({
                           ...loanInfo,
                           paymentPlan: "Daily",
                           sub_payment: dailyPayment,
-                        });
-                      }}
+                        })
+                      }
                     >
                       Daily
                     </button>
                     <button
-                      onClick={() => {
+                      onClick={() =>
                         setLoanInfo({
                           ...loanInfo,
                           paymentPlan: "Weekly",
                           sub_payment: weeklyPayment,
-                        });
-                      }}
+                        })
+                      }
                     >
                       Weekly
                     </button>
                     <button
-                      onClick={() => {
+                      onClick={() =>
                         setLoanInfo({
                           ...loanInfo,
                           paymentPlan: "Monthly",
                           sub_payment: monthlyPayment,
-                        });
-                      }}
+                        })
+                      }
                     >
                       Monthly
                     </button>
@@ -389,21 +245,29 @@ function GetQuote() {
             </div>
             <div>
               <p>Loan Term</p>
-              <span>{loanInfo.paymentTerm ? loanInfo.paymentTerm : "N/A"}</span>
+              <span>{loanInfo.paymentTerm || "N/A"}</span>
             </div>
             <div>
-              <p>Interest %</p>
-              <strong>₦{loanInfo.interest ? loanInfo.interest : "0.00"}</strong>
-            </div>{" "}
+              <p>Interest + Fees</p>
+              <strong>
+                ₦
+                {loanInfo.interest
+                  ? loanInfo.interest.toLocaleString()
+                  : "0.00"}
+              </strong>
+            </div>
             <div>
               <p>{loanInfo.paymentPlan} Payment</p>
               <strong>
                 ₦
                 {loanInfo.sub_payment
-                  ? loanInfo.sub_payment.toLocaleString()
+                  ? loanInfo.sub_payment.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })
                   : "0.00"}
               </strong>
-            </div>{" "}
+            </div>
             <div>
               <p>Total Payment</p>
               <strong>
