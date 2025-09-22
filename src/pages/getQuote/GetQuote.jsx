@@ -28,13 +28,13 @@ function GetQuote() {
   const [showFailedModal, setShowFailedModal] = useState(false);
 
   const [loanInfo, setLoanInfo] = useState({
-    chosenProduct: selected_product || "",
-    paymentTerm: "",
-    paymentPlan: "",
+    loan_type: "",
+    payment_term: "",
+    payment_plan: "",
     loan_price: "",
     sub_payment: "",
     interest: "",
-    totalToPay: "",
+    total_repay: "",
   });
 
   // ✅ Update loan price from selected_product on initial load
@@ -42,12 +42,12 @@ function GetQuote() {
     if (selected_product && productPrices[selected_product]) {
       setLoanInfo((prev) => ({
         ...prev,
-        chosenProduct: selected_product,
+        loan_type: selected_product,
         loan_price: productPrices[selected_product],
-        paymentPlan: "",
-        paymentTerm: "",
+        payment_plan: "",
+        payment_term: "",
         sub_payment: "",
-        totalToPay: "",
+        total_repay: "",
         interest: "",
       }));
     }
@@ -65,18 +65,18 @@ function GetQuote() {
 
   const handleSaveToLocalStorage = () => {
     const {
-      chosenProduct,
-      paymentTerm,
-      paymentPlan,
+      loan_type,
+      payment_term,
+      payment_plan,
       sub_payment,
       interest,
       loan_price,
     } = loanInfo;
 
     if (
-      !chosenProduct ||
-      !paymentTerm ||
-      !paymentPlan ||
+      !loan_type ||
+      !payment_term ||
+      !payment_plan ||
       !sub_payment ||
       !interest ||
       !loan_price
@@ -105,15 +105,15 @@ function GetQuote() {
 
     return {
       interest: totalInterest,
-      totalToPay: totalLoan,
+      total_repay: totalLoan,
       monthlyPayment: totalLoan / termMonths,
       weeklyPayment: totalLoan / (termMonths * 4),
       dailyPayment: totalLoan / (termMonths * 30),
     };
   };
 
-  const price = productPrices[loanInfo.chosenProduct] || 0;
-  const termMonths = parseInt(loanInfo.paymentTerm?.split(" ")[0]) || 0;
+  const price = productPrices[loanInfo.loan_type] || 0;
+  const termMonths = parseInt(loanInfo.payment_term?.split(" ")[0]) || 0;
 
   const { dailyPayment, weeklyPayment, monthlyPayment } =
     termMonths && price ? getLoanCalculations(termMonths, price) : {};
@@ -157,12 +157,12 @@ function GetQuote() {
                   const selectedPrice = productPrices[productKey];
                   setLoanInfo({
                     ...loanInfo,
-                    chosenProduct: productKey,
+                    loan_type: productKey,
                     loan_price: selectedPrice, // ✅ Set price immediately
-                    paymentPlan: "",
-                    paymentTerm: "",
+                    payment_plan: "",
+                    payment_term: "",
                     sub_payment: "",
-                    totalToPay: "",
+                    total_repay: "",
                     interest: "",
                   });
                 }}
@@ -172,7 +172,7 @@ function GetQuote() {
                   <strong>{productName}</strong>
                   <p>Price: ₦{productPrices[productKey].toLocaleString()}</p>
                 </div>
-                {loanInfo.chosenProduct === productKey ? (
+                {loanInfo.loan_type === productKey ? (
                   <FaRegCheckCircle className={styles.input} />
                 ) : (
                   <FaRegCircle className={styles.input} />
@@ -192,12 +192,12 @@ function GetQuote() {
               <span>Payment Term</span>
               <label>
                 <div onClick={handleShowPaymentTerm}>
-                  {loanInfo.paymentTerm || "--Select--"} <FaChevronDown />
+                  {loanInfo.payment_term || "--Select--"} <FaChevronDown />
                 </div>
                 {showPaymentTerm && (
                   <aside>
                     {[6, 9, 12, 15, 18, 21, 24].map((months) => {
-                      const { interest, totalToPay } = getLoanCalculations(
+                      const { interest, total_repay } = getLoanCalculations(
                         months,
                         price
                       );
@@ -208,10 +208,10 @@ function GetQuote() {
                             setLoanInfo({
                               ...loanInfo,
                               interest,
-                              totalToPay,
+                              total_repay,
                               loan_price: price,
-                              paymentTerm: `${months} months`,
-                              paymentPlan: "",
+                              payment_term: `${months} months`,
+                              payment_plan: "",
                               sub_payment: "",
                             })
                           }
@@ -229,7 +229,7 @@ function GetQuote() {
               <span>Payment Plan</span>
               <label>
                 <div onClick={handleShowPaymentPlan}>
-                  {loanInfo.paymentPlan || "--Select--"} <FaChevronDown />
+                  {loanInfo.payment_plan || "--Select--"} <FaChevronDown />
                 </div>
                 {showPaymentPlan && (
                   <aside>
@@ -237,7 +237,7 @@ function GetQuote() {
                       onClick={() =>
                         setLoanInfo({
                           ...loanInfo,
-                          paymentPlan: "Daily",
+                          payment_plan: "Daily",
                           sub_payment: dailyPayment,
                         })
                       }
@@ -248,7 +248,7 @@ function GetQuote() {
                       onClick={() =>
                         setLoanInfo({
                           ...loanInfo,
-                          paymentPlan: "Weekly",
+                          payment_plan: "Weekly",
                           sub_payment: weeklyPayment,
                         })
                       }
@@ -259,7 +259,7 @@ function GetQuote() {
                       onClick={() =>
                         setLoanInfo({
                           ...loanInfo,
-                          paymentPlan: "Monthly",
+                          payment_plan: "Monthly",
                           sub_payment: monthlyPayment,
                         })
                       }
@@ -289,7 +289,7 @@ function GetQuote() {
             </div>
             <div>
               <p>Loan Term</p>
-              <span>{loanInfo.paymentTerm || "N/A"}</span>
+              <span>{loanInfo.payment_term || "N/A"}</span>
             </div>
             <div>
               <p>Interest + Fees</p>
@@ -301,7 +301,7 @@ function GetQuote() {
               </strong>
             </div>
             <div>
-              <p>{loanInfo.paymentPlan || "Payment"} Payment</p>
+              <p>{loanInfo.payment_plan || "Payment"} Payment</p>
               <strong>
                 ₦
                 {loanInfo.sub_payment
@@ -316,8 +316,8 @@ function GetQuote() {
               <p>Total Payment</p>
               <strong>
                 ₦
-                {loanInfo.totalToPay
-                  ? loanInfo.totalToPay.toLocaleString()
+                {loanInfo.total_repay
+                  ? loanInfo.total_repay.toLocaleString()
                   : "0.00"}
               </strong>
             </div>
