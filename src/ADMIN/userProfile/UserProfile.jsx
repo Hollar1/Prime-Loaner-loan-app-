@@ -408,6 +408,7 @@ function UserProfile() {
                   <tr>
                     <th>Date</th>
                     <th>Amount Paid</th>
+                    <th>Payment Method</th>
                     <th>Remaining Balance</th>
                   </tr>
                 </thead>
@@ -415,81 +416,37 @@ function UserProfile() {
                   <tr>
                     <td>October 28,2023</td>
                     <td>October 28,2023</td>
+                    <td>Cash </td>
                     <td>October 28,2023</td>
                   </tr>
                   <tr>
                     <td>October 28,2023</td>
                     <td>October 28,2023</td>
+                    <td>Cash </td>
                     <td>October 28,2023</td>
                   </tr>
                   <tr>
                     <td>October 28,2023</td>
                     <td>October 28,2023</td>
+                    <td>Online</td>
                     <td>October 28,2023</td>
                   </tr>
                   <tr>
                     <td>October 28,2023</td>
                     <td>October 28,2023</td>
+                    <td>Cash </td>
                     <td>October 28,2023</td>
                   </tr>
                   <tr>
                     <td>October 28,2023</td>
                     <td>October 28,2023</td>
+                    <td>Cash </td>
                     <td>October 28,2023</td>
                   </tr>
                   <tr>
                     <td>October 28,2023</td>
                     <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                  </tr>
-                  <tr>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                  </tr>
-                  <tr>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                  </tr>
-                  <tr>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                  </tr>
-                  <tr>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                  </tr>
-                  <tr>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                  </tr>
-                  <tr>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                  </tr>
-                  <tr>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                  </tr>
-                  <tr>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                  </tr>
-                  <tr>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
-                  </tr>
-                  <tr>
-                    <td>October 28,2023</td>
-                    <td>October 28,2023</td>
+                    <td>Online</td>
                     <td>October 28,2023</td>
                   </tr>
                 </tbody>
