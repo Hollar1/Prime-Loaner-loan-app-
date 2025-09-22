@@ -10,6 +10,7 @@ import Button from "../../components/button/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import { FailedModal } from "../../components/modal/Modal";
 
 function GetQuote() {
   const navigate = useNavigate();
@@ -24,15 +25,33 @@ function GetQuote() {
 
   const [showPaymentTerm, setShowPaymentTerm] = useState(false);
   const [showPaymentPlan, setShowPaymentPlan] = useState(false);
+  const [showFailedModal, setShowFailedModal] = useState(false);
 
   const [loanInfo, setLoanInfo] = useState({
     chosenProduct: selected_product || "",
     paymentTerm: "",
     paymentPlan: "",
+    loan_price: "",
     sub_payment: "",
     interest: "",
     totalToPay: "",
   });
+
+  // ✅ Update loan price from selected_product on initial load
+  useEffect(() => {
+    if (selected_product && productPrices[selected_product]) {
+      setLoanInfo((prev) => ({
+        ...prev,
+        chosenProduct: selected_product,
+        loan_price: productPrices[selected_product],
+        paymentPlan: "",
+        paymentTerm: "",
+        sub_payment: "",
+        totalToPay: "",
+        interest: "",
+      }));
+    }
+  }, [selected_product]);
 
   const handleShowPaymentTerm = () => {
     setShowPaymentPlan(false);
@@ -44,22 +63,28 @@ function GetQuote() {
     setShowPaymentPlan(!showPaymentPlan);
   };
 
-
-
-
-
-
   const handleSaveToLocalStorage = () => {
-    const { chosenProduct, paymentTerm, paymentPlan, sub_payment, interest } =
-      loanInfo;
+    const {
+      chosenProduct,
+      paymentTerm,
+      paymentPlan,
+      sub_payment,
+      interest,
+      loan_price,
+    } = loanInfo;
+
     if (
       !chosenProduct ||
       !paymentTerm ||
       !paymentPlan ||
       !sub_payment ||
-      !interest
+      !interest ||
+      !loan_price
     ) {
-      alert("All fields are required!");
+      setShowFailedModal(true);
+      setTimeout(() => {
+        setShowFailedModal(false);
+      }, 4000);
     } else {
       localStorage.setItem("loanInfo", JSON.stringify(loanInfo));
       navigate("/loan-form");
@@ -87,61 +112,74 @@ function GetQuote() {
     };
   };
 
-  // Dynamic product price
   const price = productPrices[loanInfo.chosenProduct] || 0;
-
-  // Calculate payments based on selected term
   const termMonths = parseInt(loanInfo.paymentTerm?.split(" ")[0]) || 0;
+
   const { dailyPayment, weeklyPayment, monthlyPayment } =
     termMonths && price ? getLoanCalculations(termMonths, price) : {};
 
   return (
     <div className={styles.parent_wrapper}>
       <NavBar logo={""} pageHeader={"Select Loan Type"} goBack={back_icon} />
-
+      {showFailedModal && (
+        <FailedModal
+          header={"Failed!"}
+          body={
+            "All fields are required and must be completed before proceeding."
+          }
+        />
+      )}
       <div className={styles.wrapper}>
         <header>
           <h3>Choose Your Loan</h3>
         </header>
 
         <section className={styles.sec_01}>
-          {["car_loan", "rickshaw_loan", "motorbike_loan"].map((productKey) => (
-            <article
-              key={productKey}
-              onClick={() =>
-                setLoanInfo({
-                  ...loanInfo,
-                  chosenProduct: productKey,
-                })
-              }
-            >
-              <img
-                src={
-                  productKey === "car_loan"
-                    ? car_01
-                    : productKey === "rickshaw_loan"
-                    ? rickshaw_01
-                    : bike_01
-                }
-                alt=""
-              />
-              <div>
-                <strong>
-                  {productKey === "car_loan"
-                    ? "Car Loan"
-                    : productKey === "rickshaw_loan"
-                    ? "Rickshaw Loan"
-                    : "Motor-Bike Loan"}
-                </strong>
-                <p>Price: ₦{productPrices[productKey].toLocaleString()}</p>
-              </div>
-              {loanInfo.chosenProduct === productKey ? (
-                <FaRegCheckCircle className={styles.input} />
-              ) : (
-                <FaRegCircle className={styles.input} />
-              )}
-            </article>
-          ))}
+          {["car_loan", "rickshaw_loan", "motorbike_loan"].map((productKey) => {
+            const productName =
+              productKey === "car_loan"
+                ? "Car Loan"
+                : productKey === "rickshaw_loan"
+                ? "Rickshaw Loan"
+                : "Motor-Bike Loan";
+
+            const productImage =
+              productKey === "car_loan"
+                ? car_01
+                : productKey === "rickshaw_loan"
+                ? rickshaw_01
+                : bike_01;
+
+            return (
+              <article
+                key={productKey}
+                onClick={() => {
+                  const selectedPrice = productPrices[productKey];
+                  setLoanInfo({
+                    ...loanInfo,
+                    chosenProduct: productKey,
+                    loan_price: selectedPrice, // ✅ Set price immediately
+                    paymentPlan: "",
+                    paymentTerm: "",
+                    sub_payment: "",
+                    totalToPay: "",
+                    interest: "",
+                  });
+                }}
+              >
+                <img src={productImage} alt={productName} />
+                <div>
+                  <strong>{productName}</strong>
+                  <p>Price: ₦{productPrices[productKey].toLocaleString()}</p>
+                </div>
+                {loanInfo.chosenProduct === productKey ? (
+                  <FaRegCheckCircle className={styles.input} />
+                ) : (
+                  <FaRegCircle className={styles.input} />
+                )}
+              </article>
+            );
+          })}
         </section>
 
         <hr />
@@ -171,9 +209,10 @@ function GetQuote() {
                               ...loanInfo,
                               interest,
                               totalToPay,
+                              loan_price: price,
                               paymentTerm: `${months} months`,
-                              sub_payment: "", // reset payment
                               paymentPlan: "",
+                              sub_payment: "",
                             })
                           }
                         >
@@ -241,7 +280,12 @@ function GetQuote() {
           <article>
             <div>
               <p>Loan Amount</p>
-              <span>₦{price.toLocaleString()}</span>
+              <span>
+                ₦
+                {loanInfo.loan_price
+                  ? loanInfo.loan_price.toLocaleString()
+                  : "0.00"}
+              </span>
             </div>
             <div>
               <p>Loan Term</p>
@@ -257,7 +301,7 @@ function GetQuote() {
               </strong>
             </div>
             <div>
-              <p>{loanInfo.paymentPlan} Payment</p>
+              <p>{loanInfo.paymentPlan || "Payment"} Payment</p>
               <strong>
                 ₦
                 {loanInfo.sub_payment

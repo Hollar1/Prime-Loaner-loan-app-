@@ -43,3 +43,14 @@ function Modal() {
 }
 
 export default Modal;
+
+export const FailedModal = ({ header, body }) => {
+  return (
+    <div className={styles.failed_parent_div}>
+      <div className={styles.failed_div_wrapper}>
+        <h3>{header}</h3>
+        <p>{body}</p>
+      </div>
+    </div>
+  );
+};

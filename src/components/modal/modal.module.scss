@@ -99,3 +99,41 @@
     } // sec_06 scope ends here
   } // Wrapper scope ends here
 } // Parent_wrapper scope ends here
+
+.failed_parent_div {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  .failed_div_wrapper {
+    background-color: map-get($colors, color_18);
+    padding: 15px 10px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: map-get($colors, color_06);
+    h3 {
+      font-family: roboto;
+      font-size: map-get($fontSize, xxx_large);
+      letter-spacing: 0.5px;
+    }
+    p {
+      font-family: inter;
+      margin-top: map-get($marginTop, small);
+      font-size: map-get($fontSize, x_large);
+      font-weight: map-get($fontWidth, medium);
+      letter-spacing: 0.3px;
+      word-spacing: 2px;
+    }
+  }
+}
