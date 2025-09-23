@@ -43,7 +43,7 @@ function NavBar({
         <div className={styles.companyName}>{companyName}</div>
         <div className={styles.pageHeader}>{pageHeader}</div>
 
-        <div className={styles.user} onClick={() => navigate("/profile")}>
+        <div className={styles.user} onClick={() => navigate("/sign-up")}>
           {user}
         </div>
 

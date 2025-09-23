@@ -37,6 +37,9 @@ function LoanForm() {
             <Input label_text={"Phone Number"} />
           </div>
           <div>
+            <Input label_text={"NIN Number"} />
+          </div>
+          <div>
             <Input label_text={"Email"} />
           </div>
           <div>

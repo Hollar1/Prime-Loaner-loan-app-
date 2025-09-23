@@ -1,0 +1,156 @@
+@import "../../../public/styles_prop.scss";
+.parent_wrapper {
+  background-color: map-get($colors, background_color);
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .wrapper {
+    width: 100%;
+    padding: 15px;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .sec_01 {
+      width: 100%;
+      header {
+        h3 {
+          @include _header;
+          text-align: center;
+          font-size: map-get($fontSize, xxxxxx_large);
+          letter-spacing: 0.3px;
+          margin-bottom: map-get($marginTop, xx_large);
+        }
+      }
+      form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        div {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          &:nth-child(4) {
+            // margin-top: map-get($marginTop, medium);
+
+            p {
+              display: flex;
+              flex-direction: column;
+              font-family: inter;
+              font-weight: map-get($fontWidth, medium);
+              font-size: map-get($fontSize, medium);
+            }
+            article {
+              width: 100%;
+              height: 40px;
+              border-radius: 7px;
+              border: solid 0.2px map-get($colors, color_09);
+              background-color: map-get($colors, color_11);
+              padding-inline-start: 7px;
+              display: flex;
+              align-items: center;
+              position: relative;
+              justify-content: space-between;
+              aside {
+                height: 100%;
+                &:first-child {
+                  position: absolute;
+                  display: flex;
+                  left: 25px;
+                  align-items: center;
+                  gap: 30px;
+                  label {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    font-family: inter;
+                    letter-spacing: 0.2px;
+                    input {
+                      appearance: none;
+                      width: 17px;
+                      height: 17px;
+                      border: solid;
+                      border-radius: 4px;
+                      &:checked {
+                        background-color: map-get($colors, color_04);
+                        border: solid 2.5px map-get($colors, color_01);
+                      }
+                    }
+                  }
+                }
+                &:last-child {
+                  position: absolute;
+                  right: 0%;
+                  width: 15%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  justify-self: right;
+                }
+              }
+            }
+          }
+          &:nth-child(5) {
+            // margin-top: map-get($marginTop, medium);
+            width: 100%;
+            p {
+              display: flex;
+              flex-direction: column;
+              font-family: inter;
+              font-weight: map-get($fontWidth, medium);
+              font-size: map-get($fontSize, medium);
+            }
+            article {
+              height: 40px;
+              border-radius: 7px;
+              border: solid 0.2px map-get($colors, color_09);
+              background-color: map-get($colors, color_11);
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding-left: 5px;
+              padding-right: 10px;
+              width: 100%;
+              input {
+                height: 96%;
+                width: 93%;
+                border: none;
+                outline: none;
+                background-color: transparent;
+                font-size: map-get($fontSize, xxx_large);
+              }
+            }
+          } // &:nth-child(5
+          &:nth-child(6) {
+            margin-top: 30px;
+          } // &:nth-child(6)
+        }
+      }
+    } // .sec_01 scope ends here
+
+    .sec_02 {
+      display: flex;
+      margin-top: map-get($marginTop, xx_large);
+      gap: 10px;
+      align-items: center;
+      p {
+        @include _text;
+        color: map-get($colors, color_09);
+      }
+      button {
+        font-size: map-get($fontSize, xxx_large);
+        font-weight: map-get($fontWidth, x_large);
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: map-get($colors, color_02);
+      }
+    }
+  } // Wrapper scope ends here
+} // Parent_wrapper scope ends here

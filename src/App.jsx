@@ -9,18 +9,26 @@ import TermsConditions from "./pages/termsConditions/TermsConditions";
 import ScrollToTop from "./utils/ScrollToTop";
 import HomePage from "./ADMIN/homepage/HomePage";
 import Applications from "./ADMIN/applications/Applications";
-import Overview from "../src/ADMIN/overview/Overview"
+import Overview from "../src/ADMIN/overview/Overview";
 
 import AllUsers from "../src/ADMIN/allUsers/AllUsers";
 import ApplicationDetails from "./ADMIN/applicationDetails/ApplicationDetails";
 import Loans from "./ADMIN/loans/Loans";
 import UserProfile from "./ADMIN/userProfile/UserProfile";
+import SignUp from "./pages/signUp/SignUp";
+import Login from "./pages/login/Login";
+import ForgotPass_email from "./pages/forgotPass_email/ForgotPass_email";
+import CreateNewPass from "./pages/createNewPass/CreateNewPass";
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgot-pass-email" element={<ForgotPass_email />} />
+        <Route path="/create-new-pass" element={<CreateNewPass />} />
         <Route path="/get-quote" element={<GetQuote />} />
         <Route path="/loan-form" element={<LoanForm />} />
         <Route path="/loan-summary" element={<LoanSummary />} />
@@ -31,9 +39,9 @@ function App() {
         <Route path="/home-page" element={<HomePage />} />
         <Route path="/applications" element={<Applications />} />
         <Route path="/all-users" element={<AllUsers />} />
-        <Route path="/loans" element={<Loans/>} />
-        <Route path="/user-profile" element={<UserProfile/>} />
-        <Route path="/overview" element={<Overview/>} />
+        <Route path="/loans" element={<Loans />} />
+        <Route path="/user-profile" element={<UserProfile />} />
+        <Route path="/overview" element={<Overview />} />
         <Route path="/application-details" element={<ApplicationDetails />} />
       </Routes>
     </Router>
