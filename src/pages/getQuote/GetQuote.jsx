@@ -10,169 +10,183 @@ import Button from "../../components/button/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
-import { FailedModal } from "../../components/modal/Modal";
 
 function GetQuote() {
   const navigate = useNavigate();
   const location = useLocation();
   const selected_product = location?.state?.product;
 
-  const productPrices = {
-    car_loan: 9500000,
-    rickshaw_loan: 4900000,
-    motorbike_loan: 1400000,
-  };
+  const allLoans = [
+    {
+      product: "car_loan",
+      price: 6000000,
+      interest_percentage: 55,
+    },
+    {
+      product: "rickshaw_loan",
+      price: 3600000,
+      interest_percentage: 45,
+    },
+    {
+      product: "motorbike_loan",
+      price: 1300000,
+      interest_percentage: 35,
+    },
+  ];
 
   const [showPaymentTerm, setShowPaymentTerm] = useState(false);
   const [showPaymentPlan, setShowPaymentPlan] = useState(false);
-  const [showFailedModal, setShowFailedModal] = useState(false);
 
   const [loanInfo, setLoanInfo] = useState({
-    loan_type: "",
-    payment_term: "",
-    payment_plan: "",
+    chosenProduct: selected_product || "",
+    paymentTerm: "",
+    paymentPlan: "",
     loan_price: "",
     sub_payment: "",
     interest: "",
-    total_repay: "",
+    totalToPay: "",
   });
 
-  // ✅ Update loan price from selected_product on initial load
   useEffect(() => {
-    if (selected_product && productPrices[selected_product]) {
-      setLoanInfo((prev) => ({
-        ...prev,
-        loan_type: selected_product,
-        loan_price: productPrices[selected_product],
-        payment_plan: "",
-        payment_term: "",
-        sub_payment: "",
-        total_repay: "",
-        interest: "",
-      }));
+    if (selected_product) {
+      const foundLoan = allLoans.find(
+        (loan) => loan.product === selected_product
+      );
+      if (foundLoan) {
+        setLoanInfo((prev) => ({
+          ...prev,
+          chosenProduct: foundLoan.product,
+          loan_price: foundLoan.price,
+        }));
+      }
     }
   }, [selected_product]);
 
-  const handleShowPaymentTerm = () => {
+  const handleShowPaymentTerm = (e) => {
+    e.stopPropagation();
     setShowPaymentPlan(false);
-    setShowPaymentTerm(!showPaymentTerm);
+    setTimeout(() => {
+      setShowPaymentTerm((prev) => !prev);
+    }, 0);
   };
 
-  const handleShowPaymentPlan = () => {
+  const handleShowPaymentPlan = (e) => {
+    e.stopPropagation();
     setShowPaymentTerm(false);
-    setShowPaymentPlan(!showPaymentPlan);
+    setTimeout(() => {
+      setShowPaymentPlan(!showPaymentPlan);
+    }, 0);
   };
 
   const handleSaveToLocalStorage = () => {
     const {
-      loan_type,
-      payment_term,
-      payment_plan,
+      chosenProduct,
+      paymentTerm,
+      paymentPlan,
       sub_payment,
       interest,
       loan_price,
     } = loanInfo;
 
     if (
-      !loan_type ||
-      !payment_term ||
-      !payment_plan ||
+      !chosenProduct ||
+      !paymentTerm ||
+      !paymentPlan ||
       !sub_payment ||
       !interest ||
       !loan_price
     ) {
-      setShowFailedModal(true);
-      setTimeout(() => {
-        setShowFailedModal(false);
-      }, 4000);
+      alert("All fields are required and must be completed before proceeding.");
     } else {
       localStorage.setItem("loanInfo", JSON.stringify(loanInfo));
       navigate("/loan-form");
     }
   };
 
-  const getLoanCalculations = (termMonths, price) => {
-    const flatInterest = (35 / 100) * price;
+  const getInterestPercentage = (productKey) => {
+    const match = allLoans.find((loan) => loan.product === productKey);
+    return match?.interest_percentage || 0;
+  };
 
-    let totalInterest = flatInterest;
+  const getLoanCalculations = (termMonths, price, interestPercentage) => {
+    const baseInterest = (interestPercentage / 100) * price;
+    let extraCharges = 0;
+
     if (termMonths > 6) {
-      const monthlyFee = 50000 / 3;
-      const totalFee = monthlyFee * termMonths;
-      totalInterest += totalFee;
+      const extraMonths = termMonths - 6;
+      extraCharges = extraMonths * 50000;
     }
 
+    const totalInterest = baseInterest + extraCharges;
     const totalLoan = price + totalInterest;
 
     return {
       interest: totalInterest,
-      total_repay: totalLoan,
+      totalToPay: totalLoan,
       monthlyPayment: totalLoan / termMonths,
       weeklyPayment: totalLoan / (termMonths * 4),
       dailyPayment: totalLoan / (termMonths * 30),
     };
   };
 
-  const price = productPrices[loanInfo.loan_type] || 0;
-  const termMonths = parseInt(loanInfo.payment_term?.split(" ")[0]) || 0;
+  const price = loanInfo.loan_price || 0;
+  const interestPercentage = getInterestPercentage(loanInfo.chosenProduct);
+  const termMonths = parseInt(loanInfo.paymentTerm?.split(" ")[0]) || 0;
 
   const { dailyPayment, weeklyPayment, monthlyPayment } =
-    termMonths && price ? getLoanCalculations(termMonths, price) : {};
+    termMonths && price
+      ? getLoanCalculations(termMonths, price, interestPercentage)
+      : {};
 
   return (
     <div className={styles.parent_wrapper}>
       <NavBar logo={""} pageHeader={"Select Loan Type"} goBack={back_icon} />
-      {showFailedModal && (
-        <FailedModal
-          header={"Failed!"}
-          body={
-            "All fields are required and must be completed before proceeding."
-          }
-        />
-      )}
+
       <div className={styles.wrapper}>
         <header>
           <h3>Choose Your Loan</h3>
         </header>
 
         <section className={styles.sec_01}>
-          {["car_loan", "rickshaw_loan", "motorbike_loan"].map((productKey) => {
-            const productName =
-              productKey === "car_loan"
-                ? "Car Loan"
-                : productKey === "rickshaw_loan"
-                ? "Rickshaw Loan"
-                : "Motor-Bike Loan";
-
+          {allLoans.map((loan) => {
             const productImage =
-              productKey === "car_loan"
+              loan.product === "car_loan"
                 ? car_01
-                : productKey === "rickshaw_loan"
+                : loan.product === "rickshaw_loan"
                 ? rickshaw_01
                 : bike_01;
 
+            const displayName =
+              loan.product === "car_loan"
+                ? "Car Loan"
+                : loan.product === "rickshaw_loan"
+                ? "Rickshaw Loan"
+                : "Motor-Bike Loan";
+
             return (
               <article
-                key={productKey}
+                key={loan.product}
                 onClick={() => {
-                  const selectedPrice = productPrices[productKey];
                   setLoanInfo({
                     ...loanInfo,
-                    loan_type: productKey,
-                    loan_price: selectedPrice, // ✅ Set price immediately
-                    payment_plan: "",
-                    payment_term: "",
+                    chosenProduct: loan.product,
+                    loan_price: loan.price,
+                    paymentPlan: "",
+                    paymentTerm: "",
                     sub_payment: "",
-                    total_repay: "",
+                    totalToPay: "",
                     interest: "",
                   });
+                  setShowPaymentPlan(false);
+                  setShowPaymentTerm(false);
                 }}
               >
-                <img src={productImage} alt={productName} />
+                <img src={productImage} alt={displayName} />
                 <div>
-                  <strong>{productName}</strong>
-                  <p>Price: ₦{productPrices[productKey].toLocaleString()}</p>
+                  <strong>{displayName}</strong>
+                  <p>Price: ₦{loan.price.toLocaleString()}</p>
                 </div>
-                {loanInfo.loan_type === productKey ? (
+                {loanInfo.chosenProduct === loan.product ? (
                   <FaRegCheckCircle className={styles.input} />
                 ) : (
                   <FaRegCircle className={styles.input} />
@@ -188,33 +202,46 @@ function GetQuote() {
           <h3>Schedule Payment</h3>
 
           <main>
+            {/* Payment Term */}
             <article>
               <span>Payment Term</span>
               <label>
-                <div onClick={handleShowPaymentTerm}>
-                  {loanInfo.payment_term || "--Select--"} <FaChevronDown />
+                <div onClick={(e) => handleShowPaymentTerm(e)}>
+                  {loanInfo.paymentTerm || "--Select--"} <FaChevronDown />
                 </div>
                 {showPaymentTerm && (
                   <aside>
                     {[6, 9, 12, 15, 18, 21, 24].map((months) => {
-                      const { interest, total_repay } = getLoanCalculations(
+                      const { interest, totalToPay } = getLoanCalculations(
                         months,
-                        price
+                        price,
+                        interestPercentage
                       );
+
+                      const updatedLoan = {
+                        ...loanInfo,
+                        interest,
+                        totalToPay,
+                        paymentTerm: `${months} months`,
+                      };
+
+                      if (loanInfo.paymentPlan === "Daily") {
+                        updatedLoan.sub_payment = totalToPay / (months * 30);
+                      } else if (loanInfo.paymentPlan === "Weekly") {
+                        updatedLoan.sub_payment = totalToPay / (months * 4);
+                      } else if (loanInfo.paymentPlan === "Monthly") {
+                        updatedLoan.sub_payment = totalToPay / months;
+                      }
+
                       return (
                         <button
                           key={months}
-                          onClick={() =>
-                            setLoanInfo({
-                              ...loanInfo,
-                              interest,
-                              total_repay,
-                              loan_price: price,
-                              payment_term: `${months} months`,
-                              payment_plan: "",
-                              sub_payment: "",
-                            })
-                          }
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setLoanInfo(updatedLoan);
+                            setShowPaymentTerm(false);
+                          }}
                         >
                           {months} Months
                         </button>
@@ -225,44 +252,56 @@ function GetQuote() {
               </label>
             </article>
 
+            {/* Payment Plan */}
             <article>
               <span>Payment Plan</span>
               <label>
-                <div onClick={handleShowPaymentPlan}>
-                  {loanInfo.payment_plan || "--Select--"} <FaChevronDown />
+                <div onClick={(e) => handleShowPaymentPlan(e)}>
+                  {loanInfo.paymentPlan || "--Select--"} <FaChevronDown />
                 </div>
                 {showPaymentPlan && (
                   <aside>
                     <button
-                      onClick={() =>
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setLoanInfo({
                           ...loanInfo,
-                          payment_plan: "Daily",
+                          paymentPlan: "Daily",
                           sub_payment: dailyPayment,
-                        })
-                      }
+                        });
+                        setShowPaymentPlan(false);
+                      }}
                     >
                       Daily
                     </button>
+
                     <button
-                      onClick={() =>
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setLoanInfo({
                           ...loanInfo,
-                          payment_plan: "Weekly",
+                          paymentPlan: "Weekly",
                           sub_payment: weeklyPayment,
-                        })
-                      }
+                        });
+                        setShowPaymentPlan(false);
+                      }}
                     >
                       Weekly
                     </button>
+
                     <button
-                      onClick={() =>
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setLoanInfo({
                           ...loanInfo,
-                          payment_plan: "Monthly",
+                          paymentPlan: "Monthly",
                           sub_payment: monthlyPayment,
-                        })
-                      }
+                        });
+                        setShowPaymentPlan(false);
+                      }}
                     >
                       Monthly
                     </button>
@@ -288,8 +327,8 @@ function GetQuote() {
               </span>
             </div>
             <div>
-              <p>Loan Term</p>
-              <span>{loanInfo.payment_term || "N/A"}</span>
+              <p>Payment Term</p>
+              <span>{loanInfo.paymentTerm || "N/A"}</span>
             </div>
             <div>
               <p>Interest + Fees</p>
@@ -301,7 +340,7 @@ function GetQuote() {
               </strong>
             </div>
             <div>
-              <p>{loanInfo.payment_plan || "Payment"} Payment</p>
+              <p>{loanInfo.paymentPlan || "Payment"} Payment</p>
               <strong>
                 ₦
                 {loanInfo.sub_payment
@@ -316,8 +355,8 @@ function GetQuote() {
               <p>Total Payment</p>
               <strong>
                 ₦
-                {loanInfo.total_repay
-                  ? loanInfo.total_repay.toLocaleString()
+                {loanInfo.totalToPay
+                  ? loanInfo.totalToPay.toLocaleString()
                   : "0.00"}
               </strong>
             </div>

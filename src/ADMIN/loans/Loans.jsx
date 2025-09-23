@@ -75,58 +75,57 @@ function Loans() {
           <h3>Create New Loan</h3>
 
           <article>
-            <div>
-              <label htmlFor="">
-                Loan Type
-                <select name="" id="">
-                  <option value="">--Select--</option>
-                  <option value="car">Car</option>
-                  <option value="motor_bike">Motor Bike</option>
-                  <option value="rickshaw">Rickshaw</option>
-                </select>
-              </label>
+            <label htmlFor="">
+              Loan Type
+              <select name="" id="">
+                <option value="">--Select--</option>
+                <option value="car">Car</option>
+                <option value="motor_bike">Motor Bike</option>
+                <option value="rickshaw">Rickshaw</option>
+              </select>
+            </label>
 
-              <label className={styles.loan_term_A}>
-                <p className={styles.p}> Loan Term(Months)</p>
-                <div className={styles.loan_term}>
-                  <select name="" id="">
-                    <option value="">--Select--</option>
-                    <option value="car">6 Months</option>
-                    <option value="car">8 Months</option>
-                    <option value="car">10 Months</option>
-                    <option value="car">12 Months</option>
-                    <option value="car">14 Months</option>
-                    <option value="car">16 Months</option>
-                    <option value="car">18 Months</option>
-                    <option value="car">20 Months</option>
-                    <option value="car">22 Months</option>
-                    <option value="car">24 Months</option>
-                  </select>
-                  <button>Add</button>
-                </div>
-              </label>
-            </div>
+            <label htmlFor="">
+              Interest Rate %
+              <select name="" id="">
+                <option value="">--Select--</option>
+                <option value="car">25</option>
+                <option value="motor_bike">30</option>
+                <option value="rickshaw">35</option>
+                <option value="rickshaw">40</option>
+                <option value="rickshaw">45</option>
+                <option value="rickshaw">50</option>
+                <option value="rickshaw">55</option>
+                <option value="rickshaw">60</option>
+                <option value="rickshaw">65</option>
+                <option value="rickshaw">70</option>
+                <option value="rickshaw">75</option>
+                <option value="rickshaw">80</option>
+                <option value="rickshaw">85</option>
+              </select>
+            </label>
 
-            <div>
-              <label htmlFor="">
-                Loan Amount ₦
-                <input type="text" placeholder="130000" />
-              </label>
-              <label htmlFor="">
-                Upload Photos
-                <input type="text" />
-              </label>
-            </div>
-            <div>
-              {" "}
-              <label htmlFor="">
-                Loan Note
-                <textarea name="" id=""></textarea>
-              </label>
-              <button className={styles.add_loan}>Add Loan</button>
-            </div>
+            <label htmlFor="">
+              Loan Amount ₦
+              <input type="text" placeholder="130000" />
+            </label>
+
+            <label htmlFor="">
+              Upload Photos
+              <input type="text" />
+            </label>
           </article>
         </section>
+
+        <section className={styles.sec_03}>
+          <label htmlFor="">
+            Loan Note
+            <textarea name="" id=""></textarea>
+          </label>
+          <button className={styles.add_loan}>Add Loan</button>
+        </section>
+
+        <section className={styles.sec_04}></section>
       </div>
     </div>
   );
