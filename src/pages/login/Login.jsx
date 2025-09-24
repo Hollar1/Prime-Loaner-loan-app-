@@ -28,12 +28,12 @@ function Login() {
               <article>
                 <input type={showPassword ? "text" : "password"} />
                 {showPassword ? (
-                  <FaRegEyeSlash
+                  <FaRegEye
                     fontSize={25}
                     onClick={() => setShowPassword(!showPassword)}
                   />
                 ) : (
-                  <FaRegEye
+                  <FaRegEyeSlash
                     fontSize={25}
                     onClick={() => setShowPassword(!showPassword)}
                   />
@@ -42,10 +42,17 @@ function Login() {
             </div>
 
             <div>
+              <button onClick={() => navigate("/forgot-pass-email")}>
+                Forgot Password ?
+              </button>
+            </div>
+
+            <div onClick={() => navigate("/profile")}>
               <Button children={"Login"} />
             </div>
           </form>
         </section>
+
         <section className={styles.sec_02}>
           <p>Don't have an account?</p>
           <button onClick={() => navigate("/sign-up")}>Sign-Up</button>

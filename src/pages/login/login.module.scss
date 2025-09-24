@@ -68,8 +68,23 @@
             }
           } // &:nth-child(5
           &:nth-child(3) {
-            margin-top: 30px;
-          } // &:nth-child(6)
+            display: flex;
+            justify-content: right;
+            width: 100%;
+            button {
+              border: none;
+              background-color: transparent;
+              outline: none;
+              width: 100%;
+              justify-content: right;
+              display: flex;
+              font-size: map-get($fontSize, x_large);
+              color: map-get($colors, color_24);
+            }
+          } // &:nth-child(3)
+          &:nth-child(4) {
+            margin-top: 20px;
+          } // &:nth-child(4)
         }
       }
     } // .sec_01 scope ends here

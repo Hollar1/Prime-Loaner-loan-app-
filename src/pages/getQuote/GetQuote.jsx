@@ -340,7 +340,7 @@ function GetQuote() {
               </strong>
             </div>
             <div>
-              <p>{loanInfo.paymentPlan || "Payment"} Payment</p>
+              <p> {loanInfo.paymentPlan ? loanInfo.paymentPlan:"N/A"} Payment</p>
               <strong>
                 ₦
                 {loanInfo.sub_payment
@@ -352,6 +352,7 @@ function GetQuote() {
               </strong>
             </div>
             <div>
+            
               <p>Total Payment</p>
               <strong>
                 ₦

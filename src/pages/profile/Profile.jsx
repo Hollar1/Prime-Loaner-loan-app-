@@ -5,22 +5,24 @@ import female_icon from "../../assets/images/female_icon.webp";
 import { Line, Circle } from "rc-progress";
 import back_icon from "../../assets/icons/back_icon.png";
 
+
 import {
   MdOutlineMail,
   MdOutlinePhone,
   MdOutlineLocationOn,
-  MdKeyboardArrowDown,
   MdCalendarMonth,
+  MdOutlineArrowForward,
 } from "react-icons/md";
+
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
-  const [showPayment_history, setShowPayment_history] = useState(false);
-
+  const navigate = useNavigate();
   return (
     <div className={styles.parent_wrapper}>
       <NavBar goBack={back_icon} pageHeader={"Profile"} />
-    
+
       <div className={styles.wrapper}>
         <section className={styles.sec_01}>
           <img src={male_icon} alt="" />
@@ -100,43 +102,15 @@ function Profile() {
 
         <section className={styles.sec_04}>
           <h3>Payment History</h3>
-          <article>
+          <article onClick={() => navigate("/payment-history")}>
             <div>
               <MdCalendarMonth />
             </div>
-            <p>Previous Monthly Payment</p>
-            <span onClick={() => setShowPayment_history(!showPayment_history)}>
-              <MdKeyboardArrowDown />
+            <p>Payments</p>
+            <span>
+              <MdOutlineArrowForward />
             </span>
           </article>
-
-          {showPayment_history && (
-            <div>
-              <main>
-                <aside>
-                  <strong>$240.00</strong>
-                  <p>March 15, 2025</p>
-                </aside>
-                <span>5 of 6 months</span>
-              </main>
-
-              <main>
-                <aside>
-                  <strong>$240.00</strong>
-                  <p>February 15, 2025</p>
-                </aside>
-                <span>4 of 6 months</span>
-              </main>
-
-              <main>
-                <aside>
-                  <strong>$240.00</strong>
-                  <p>January 15, 2025</p>
-                </aside>
-                <span>3 of 6 months</span>
-              </main>
-            </div>
-          )}
         </section>
       </div>
     </div>

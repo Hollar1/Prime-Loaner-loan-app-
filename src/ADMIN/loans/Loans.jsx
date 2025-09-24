@@ -122,10 +122,20 @@ function Loans() {
             Loan Note
             <textarea name="" id=""></textarea>
           </label>
-          <button className={styles.add_loan}>Add Loan</button>
-        </section>
+          <div>
+            <label htmlFor="">
+              Loan Status
+              <select name="" id="">
+                <option value="">--Select--</option>
+                <option value="car">Available</option>
+                <option value="motor_bike">Unavailable</option>
+                <option value="rickshaw">Pending</option>
+              </select>
+            </label>
 
-        <section className={styles.sec_04}></section>
+            <button className={styles.add_loan}>Add Loan</button>
+          </div>
+        </section>
       </div>
     </div>
   );

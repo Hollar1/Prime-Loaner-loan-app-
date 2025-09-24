@@ -114,26 +114,46 @@
           padding: 10px;
         }
       }
-      button {
-        border-radius: 7px;
-        height: 45px;
-        color: white;
-        width: 25%;
-        margin-left: 10px;
+      div {
+        width: 30%;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: map-get($colors, color_14);
-        border: none;
-        font-size: map-get($fontSize, xxxx_large) !important;
-        font-weight: map-get($fontWidth, large);
-        letter-spacing: 0.5px;
-        &:hover {
-          background-color: map-get($colors, color_17);
-          cursor: pointer;
+        gap: 30px;
+
+        label {
+          select {
+            width: 200px;
+            height: 40px;
+            padding: 0px 10px;
+            border-radius: 7px;
+            font-size: map-get($fontSize, x_large);
+            margin-top: map-get($marginTop, small);
+            border: solid 0.5px;
+          }
         }
-        &:active {
+        button {
+          border-radius: 7px;
+          height: 45px;
+          color: white;
+          width: 70%;
+          margin-left: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           background-color: map-get($colors, color_14);
+          border: none;
+          font-size: map-get($fontSize, xxxx_large) !important;
+          font-weight: map-get($fontWidth, large);
+          letter-spacing: 0.5px;
+          &:hover {
+            background-color: map-get($colors, color_17);
+            cursor: pointer;
+          }
+          &:active {
+            background-color: map-get($colors, color_14);
+          }
         }
       }
     }

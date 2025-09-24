@@ -51,7 +51,7 @@ function SignUp() {
                   </aside>
                 )}
 
-                <aside>
+                <aside onClick={() => setShowGenderSelect(!showGenderSelect)}>
                   <ImManWoman fontSize={22} />
                 </aside>
               </article>
@@ -62,12 +62,12 @@ function SignUp() {
               <article>
                 <input type={showPassword ? "text" : "password"} />
                 {showPassword ? (
-                  <FaRegEyeSlash
+                  <FaRegEye
                     fontSize={25}
                     onClick={() => setShowPassword(!showPassword)}
                   />
                 ) : (
-                  <FaRegEye
+                  <FaRegEyeSlash
                     fontSize={25}
                     onClick={() => setShowPassword(!showPassword)}
                   />

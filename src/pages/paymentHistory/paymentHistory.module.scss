@@ -1,0 +1,129 @@
+@import "../../../public/styles_prop.scss";
+.parent_wrapper {
+  background-color: map-get($colors, admin_background_color);
+  height: 100%;
+  min-height: 100vh;
+  padding: 0px 10px;
+  position: fixed;
+  width: 100%;
+  .wrapper {
+    @include wrapper;
+    padding-top: 12px;
+    .sec_01 {
+      background-color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      div {
+        &:first-child {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          //   margin-top: map-get($marginTop, small);
+          aside {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            p {
+              @include _text;
+              color: map-get($colors, color_09);
+            }
+            strong {
+              font-family: roboto;
+            }
+          }
+        } //  &:first-child
+
+        &:last-child {
+          margin-top: map-get($marginTop, x_large);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          aside {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            p {
+              @include _text;
+              color: map-get($colors, color_09);
+              font-size: map-get($fontSize, xxx_large);
+            }
+            strong {
+              font-family: roboto;
+              font-size: map-get($fontSize, xxxx_large);
+            }
+          }
+        }
+      }
+    } // .sec_01 scope ends here
+
+    .sec_02 {
+      margin-top: map-get($marginTop, x_large);
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+      button {
+        width: 120px;
+        border-radius: 8px;
+        height: 25px;
+        color: white;
+        font-size: map-get($fontSize, xx_large);
+        border: none;
+        &:first-child {
+          background-color: map-get($colors, color_22);
+        }
+        &:last-child {
+          background-color: map-get($colors, color_18);
+        }
+      }
+    } // .sec_02 scope ends here
+
+    .sec_03 {
+      margin-top: map-get($marginTop, medium);
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      height: 430px;
+      overflow: auto;
+
+      gap: 10px;
+      article {
+        background-color: white;
+        border-radius: 7px;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        position: relative;
+
+        div {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          header {
+            display: flex;
+            flex-direction: column;
+            // align-items: center;
+            strong {
+              font-family: roboto;
+            }
+            p {
+              @include _text;
+              color: map-get($colors, color_09);
+              font-size: map-get($fontSize, medium);
+            }
+          } // header scope ends here
+        }
+        strong {
+          font-family: roboto;
+          display: flex;
+          align-items: center;
+        }
+      } // article scope ends here
+    } // .sec_03 scope ends here
+  } // Wrapper scope ends here
+} // Parent_wrapper scope ends here

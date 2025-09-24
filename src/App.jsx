@@ -19,6 +19,7 @@ import SignUp from "./pages/signUp/SignUp";
 import Login from "./pages/login/Login";
 import ForgotPass_email from "./pages/forgotPass_email/ForgotPass_email";
 import CreateNewPass from "./pages/createNewPass/CreateNewPass";
+import PaymentHistory from "./pages/paymentHistory/PaymentHistory";
 function App() {
   return (
     <Router>
@@ -33,6 +34,7 @@ function App() {
         <Route path="/loan-form" element={<LoanForm />} />
         <Route path="/loan-summary" element={<LoanSummary />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/payment-history" element={<PaymentHistory />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-conditions" element={<TermsConditions />} />
         {/* ADMIN */}
